@@ -20,6 +20,21 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 1234
+  # datasource:
+  #   url: jdbc:h2:mem:test;MODE=MySQL
+  #   driver-class-name: org.h2.Driver
+  #   username: sa
+  #   password:
+  # h2:
+  #   console:
+  #     enabled: true
+  sql:
+    init:
+      mode: always
+      schema-locations:
+        - classpath:db/table.sql
+      data-locations:
+        - classpath:db/data.sql
 
 # ==
 
@@ -28,3 +43,4 @@ mybatis:
     - classpath:mapper/**.xml
   configuration:
     map-underscore-to-camel-case: true
+  type-aliases-package: com.example.jsmybatis_pagingsearching.domain

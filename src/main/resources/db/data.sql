@@ -1,0 +1,1 @@
+INSERT INTO board_tb(id, user_id, title, content, views, created_at) values(1, 1,'1번째 제목', '1번째 내용', 0, now());
