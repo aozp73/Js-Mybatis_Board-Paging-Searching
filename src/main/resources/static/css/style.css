@@ -1,12 +1,12 @@
 /* header */
-.navbar-layout {
+.custom-navbar-layout {
   padding-top: 10px;
   padding-bottom: 17px;
   border-bottom: 1px solid rgb(210, 208, 208);
 }
 
 /* footer */
-.footer-link {
+.custom-footer-link {
   color: gray;
   font-size: 14px;
   text-decoration: none;
@@ -14,7 +14,7 @@
 }
 
 /* 로그인 페이지 */
-.login-custom-container {
+.custom-login-custom-container {
   max-width: 430px;
   margin-right: auto;
   margin-left: auto;
@@ -23,10 +23,10 @@
   border-radius: 5px;
   padding: 57px 50px 59px 50px;
 }
-.login-btn {
+.custom-login-btn {
   width: 100%;
 }
-.login-link {
+.custom-login-link {
   color: gray;
   font-size: 14px;
   text-decoration: none;
@@ -34,15 +34,36 @@
 }
 
 /* 회원가입 페이지 */
-.join-custom-container {
+.custom-join-container {
   max-width: 430px;
   margin-right: auto;
   margin-left: auto;
 
   border: 1px solid rgb(167, 167, 167);
   border-radius: 5px;
-  padding: 57px 50px 52px 50px;
+  padding: 53px 50px 52px 50px;
 }
-.join-btn {
+.custom-join-btn {
   width: 100%;
+}
+
+/* 글 쓰기 페이지 */
+.custom-board-save-container {
+  max-width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 33px 50px 40px 50px;
+}
+
+/* 글 상세보기 페이지 */
+.custom-board-detail-container {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 33px 50px 40px 50px;
+}
+
+.custom-board-detail-title {
+  background-color: #f0f0f0;
+  padding: 15px;
 }

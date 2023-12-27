@@ -2,9 +2,9 @@
 
 <%@ include file="../layout/header.jsp" %>
 
-<div style="height: 430px">
-  <div class="container join-custom-container mb-5 mt-5">
-    <div class="mb-4 text-center">
+<div style="margin-top: 70px; margin-bottom: 70px">
+  <div class="container custom-join-container mb-5 mt-5">
+    <div class="text-center" style="margin-bottom: 35px">
         <h2>회원가입</h2>
     </div>
     <form>
@@ -33,8 +33,8 @@
       <div>
         <div>
           <div class="mb-2">
-            <button type="submit" class="btn btn-primary join-btn">
-              회원가입
+            <button type="submit" class="btn btn-primary custom-join-btn">
+              등록하기
             </button>
           </div>
         </div>

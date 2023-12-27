@@ -36,6 +36,9 @@ spring:
       data-locations:
         - classpath:db/data.sql
 
+logging:
+  level: # TRACE > DEBUG > INFO > WARN > ERROR
+    "[com.example.jsmybatis_pagingsearching.web]": debug
 # ==
 
 mybatis:

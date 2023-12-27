@@ -2,8 +2,8 @@
 
 <%@ include file="../layout/header.jsp" %>
 
-<div style="height: 430px">
-  <div class="container login-custom-container mb-5 mt-5">
+<div style="margin-top: 70px; margin-bottom: 100px">
+  <div class="container custom-login-custom-container mb-5 mt-5">
 
     <form>
   
@@ -27,16 +27,16 @@
       <div>
         <div>
           <div class="mb-2">
-            <button type="submit" class="btn btn-primary login-btn">
+            <button type="submit" class="btn btn-primary custom-login-btn">
               로그인
             </button>
           </div>
           <div class="d-flex justify-content-end">
             <div class="me-2">
-              <a href="#" class="login-link">회원가입</a>
+              <a href="#" class="custom-login-link">회원가입</a>
             </div>
             <div>
-              <a href="#" class="login-link">비밀번호 찾기</a>
+              <a href="#" class="custom-login-link">비밀번호 찾기</a>
             </div>
           </div>
         </div>
