@@ -102,10 +102,53 @@
   padding: 33px 50px 40px 50px;
 }
 
+.custom-top-layout {
+  border-top: 2px solid #7a7a7a;
+  border-bottom: 1px solid #525252;
+  display: flex;
+  align-items: center;
+  height: 47px;
+}
+.custom-board-layout {
+  border-bottom: 1px solid #d2d2d2;
+  display: flex;
+  align-items: center;
+  height: 37px;
+}
+
+.custom-flex-item {
+  text-align: center;
+}
+
+.custom-flex-item.number {
+  flex: 0.3;
+}
+
+.custom-flex-item.title {
+  flex: 2.5;
+}
+
+.custom-flex-item.author {
+  flex: 0.4;
+}
+
+.custom-flex-item.date {
+  flex: 0.5;
+}
+
+.custom-flex-item.view {
+  flex: 0.3;
+}
+
+.custom-board-font{
+  color: #656464;
+  font-size: 15px
+}
+
 .pagination .page-link {
-  color: #808080; /* 회색 */
+  color: #808080;
 }
 
 .pagination .page-link:hover {
-  color: #007bff; /* 페이지 링크에 호버할 때 파란색으로 변경 */
+  color: #007bff;
 }

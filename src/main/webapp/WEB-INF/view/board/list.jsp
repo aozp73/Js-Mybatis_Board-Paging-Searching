@@ -2,52 +2,6 @@
 
 <%@ include file="../layout/header.jsp" %>
 
-<style>
-    .custom-top-layout {
-        border-top: 2px solid #7a7a7a;
-        border-bottom: 1px solid #525252;
-        display: flex;
-        align-items: center;
-        height: 47px;
-    }
-    .custom-board-layout {
-        border-bottom: 1px solid #d2d2d2;
-        display: flex;
-        align-items: center;
-        height: 37px;
-    }
-
-    .custom-flex-item {
-        text-align: center;
-    }
-
-    .custom-flex-item.number {
-        flex: 0.3;
-    }
-
-    .custom-flex-item.title {
-        flex: 2.5;
-    }
-
-    .custom-flex-item.author {
-        flex: 0.4;
-    }
-
-    .custom-flex-item.date {
-        flex: 0.5;
-    }
-
-    .custom-flex-item.view {
-        flex: 0.3;
-    }
-
-    .custom-board-font{
-        color: #656464;
-        font-size: 15px
-    }
-
-</style>
-
 <div style="margin-top: 50px; margin-bottom: 50px">
     <div class="container custom-board-list-container mb-5 mt-5">
         <div class="mb-5">
