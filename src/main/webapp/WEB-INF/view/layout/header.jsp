@@ -21,7 +21,7 @@
   <body>
     <nav class="custom-navbar-layout navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid ms-3">
-        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="/">Home</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -41,12 +41,12 @@
           <div class="d-flex justify-content-between w-100">
             <ul class="navbar-nav ms-3">
               <li class="nav-item">
-                <a class="nav-link" href="#">게시판</a>
+                <a class="nav-link" href="/list">게시판</a>
               </li>
             </ul>
             <ul class="navbar-nav me-5">
               <li class="nav-item">
-                <a class="nav-link" href="#">로그인</a>
+                <a class="nav-link" href="/loginForm">로그인</a>
               </li>
             </ul>
           </div>
