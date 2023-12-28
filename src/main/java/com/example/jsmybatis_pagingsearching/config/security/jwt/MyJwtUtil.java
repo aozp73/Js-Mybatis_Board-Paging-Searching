@@ -12,9 +12,9 @@ import javax.annotation.PostConstruct;
 import java.util.Date;
 
 @Component
-public class JwtUtil {
+public class MyJwtUtil {
 
-    @Value("${name}")
+    @Value("${myjwt}")
     private String name;
 
     private final String SUBJECT = "jwt";

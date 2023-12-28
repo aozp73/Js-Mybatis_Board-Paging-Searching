@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Data
-public class PrincipalDetails implements UserDetails {
+public class MyPrincipalDetails implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
     private User user;
 
-    public PrincipalDetails(User user) {
+    public MyPrincipalDetails(User user) {
         this.user = user;
     }
 

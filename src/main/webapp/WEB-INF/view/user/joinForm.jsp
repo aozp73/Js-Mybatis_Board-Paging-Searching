@@ -7,29 +7,45 @@
     <div class="text-center" style="margin-bottom: 35px">
         <h2>회원가입</h2>
     </div>
-    <form action="/join" method="post">
-      <div class="mb-3">
+    <form action="/join" method="post" onsubmit="return validateForm()">
+      <div class="mb-2 d-flex justify-content-between">
         <input
-          class="form-control"
-          placeholder="이메일"
-          id="email"
-          name="email"
+                class="form-control"
+                placeholder="이메일"
+                id="email"
+                name="email"
+                onkeyup="checkEmail()"
+                required
         />
       </div>
+      <div id="emailCheckMessage" class="mb-3 ms-2"></div>
       <div class="mb-3">
-        <input
-          class="form-control"
-          placeholder="비밀번호"
-          id="password"
-          name="password"
+        <input type="password"
+               class="form-control"
+               placeholder="비밀번호"
+               id="password"
+               name="password"
+               onkeyup="validatePassword()"
+               required
         />
       </div>
+      <div class="mb-2">
+        <input type="password"
+               class="form-control"
+               placeholder="비밀번호 확인"
+               id="passwordConfirmation"
+               onkeyup="validatePassword()"
+               required
+        />
+      </div>
+      <div class="mb-3 ms-2" class="form-control" id="passwordCheck" style="color: orangered"></div>
       <div class="mb-5">
         <input
           class="form-control"
           placeholder="아이디"
           id="username"
           name="username"
+          required
         />
       </div>
 
@@ -46,5 +62,5 @@
   </div>
 </div>
 
-
+<script src="/js/joinForm.js"></script>
 <%@ include file="../layout/footer.jsp" %>

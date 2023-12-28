@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class PrincipalDetailsService implements UserDetailsService {
+public class MyPrincipalDetailsService implements UserDetailsService {
 
     private final UserMapper userRepository;
 
@@ -22,6 +22,6 @@ public class PrincipalDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("올바르지 않은 정보입니다.");
         }
 
-        return new PrincipalDetails(user);
+        return new MyPrincipalDetails(user);
     }
 }

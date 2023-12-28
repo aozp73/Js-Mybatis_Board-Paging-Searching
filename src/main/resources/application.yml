@@ -47,3 +47,5 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   type-aliases-package: com.example.jsmybatis_pagingsearching.domain
+
+myjwt: ${MY_JWT}

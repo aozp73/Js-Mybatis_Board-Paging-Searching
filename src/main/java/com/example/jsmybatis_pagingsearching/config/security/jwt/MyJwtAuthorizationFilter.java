@@ -2,7 +2,7 @@ package com.example.jsmybatis_pagingsearching.config.security.jwt;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.example.jsmybatis_pagingsearching.config.security.principal.PrincipalDetails;
+import com.example.jsmybatis_pagingsearching.config.security.principal.MyPrincipalDetails;
 import com.example.jsmybatis_pagingsearching.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,11 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
-public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
+public class MyJwtAuthorizationFilter extends BasicAuthenticationFilter {
 
-    private JwtUtil jwtUtil;
+    private MyJwtUtil jwtUtil;
 
-    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
+    public MyJwtAuthorizationFilter(AuthenticationManager authenticationManager, MyJwtUtil jwtUtil) {
         super(authenticationManager);
         this.jwtUtil = jwtUtil;
     }
@@ -36,7 +36,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             chain.doFilter(request, response);
             return;
         }
-        String jwt = prefixJwt.replace(JwtUtil.TOKEN_PREFIX, "");
+        String jwt = prefixJwt.replace(MyJwtUtil.TOKEN_PREFIX, "");
         try {
             DecodedJWT decodedJWT = jwtUtil.verify(jwt);
             Long id = decodedJWT.getClaim("id").asLong();
@@ -45,7 +45,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
             User user = User.builder().id(id).email(email).role(role).build();
 
-            PrincipalDetails myUserDetails = new PrincipalDetails(user);
+            MyPrincipalDetails myUserDetails = new MyPrincipalDetails(user);
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     myUserDetails,
                     myUserDetails.getPassword(),

@@ -1,6 +1,7 @@
 package com.example.jsmybatis_pagingsearching.config.security;
 
-import com.example.jsmybatis_pagingsearching.config.security.jwt.JwtAuthorizationFilter;
+import com.example.jsmybatis_pagingsearching.config.security.jwt.MyJwtAuthorizationFilter;
+import com.example.jsmybatis_pagingsearching.config.security.jwt.MyJwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,10 +21,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Slf4j
 @Configuration
-public class SecurityConfig {
+public class MySecurityConfig {
 
     @Autowired
-    private com.example.jsmybatis_pagingsearching.config.security.jwt.JwtUtil JwtUtil;
+    private MyJwtUtil JwtUtil;
 
     @Bean
     BCryptPasswordEncoder passwordEncoder() {
@@ -35,7 +36,7 @@ public class SecurityConfig {
         public void configure(HttpSecurity builder) throws Exception {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
 
-            builder.addFilterAt(new JwtAuthorizationFilter(authenticationManager , JwtUtil), BasicAuthenticationFilter.class);
+            builder.addFilterAt(new MyJwtAuthorizationFilter(authenticationManager , JwtUtil), BasicAuthenticationFilter.class);
             super.configure(builder);
         }
     }
