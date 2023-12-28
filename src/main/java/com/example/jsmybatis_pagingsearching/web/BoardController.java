@@ -10,6 +10,12 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class BoardController {
 
+    @GetMapping("/list")
+    public String list() {
+        log.debug("GET - 글 목록 페이지");
+        return "board/list";
+    }
+    
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id) {
         log.debug("GET - 상세 페이지 요청");
@@ -21,4 +27,5 @@ public class BoardController {
         log.debug("GET - 글 수정 페이지");
         return "board/saveForm";
     }
+
 }

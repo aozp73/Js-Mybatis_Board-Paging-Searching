@@ -1,3 +1,10 @@
+/* 공통 */
+.custom-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* header */
 .custom-navbar-layout {
   padding-top: 10px;
@@ -7,7 +14,7 @@
 
 /* footer */
 .custom-footer-link {
-  color: gray;
+  color: rgb(128, 128, 128);
   font-size: 14px;
   text-decoration: none;
   cursor: pointer;
@@ -27,7 +34,7 @@
   width: 100%;
 }
 .custom-login-link {
-  color: gray;
+  color: rgb(128, 128, 128);
   font-size: 14px;
   text-decoration: none;
   cursor: pointer;
@@ -66,4 +73,39 @@
 .custom-board-detail-title {
   background-color: #f0f0f0;
   padding: 15px;
+}
+
+.custom-flex-comment-user {
+  flex: 0.5;
+}
+
+.custom-flex-comment-content {
+  flex: 0.3;
+}
+
+.custom-ellipsis-container {
+  display: flex;
+  max-width: 50px; /* 원하는 최대 너비 설정 */
+}
+
+.custom-comment-font {
+  font-size: 13px;
+  color: #949494;
+}
+
+
+/* 글 목록 페이지 */
+.custom-board-list-container {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 33px 50px 40px 50px;
+}
+
+.pagination .page-link {
+  color: #808080; /* 회색 */
+}
+
+.pagination .page-link:hover {
+  color: #007bff; /* 페이지 링크에 호버할 때 파란색으로 변경 */
 }
