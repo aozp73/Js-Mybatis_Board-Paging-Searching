@@ -34,6 +34,10 @@ dependencies {
 	implementation 'javax.servlet:jstl'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 
+	// Security, JWT
+	implementation group: 'com.auth0', name: 'java-jwt', version: '4.3.0'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 	// Test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.2'

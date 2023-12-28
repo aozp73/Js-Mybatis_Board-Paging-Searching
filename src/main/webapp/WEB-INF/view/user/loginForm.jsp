@@ -33,7 +33,7 @@
           </div>
           <div class="d-flex justify-content-end">
             <div class="me-2">
-              <a href="#" class="custom-login-link">회원가입</a>
+              <a href="/joinForm" class="custom-login-link">회원가입</a>
             </div>
             <div>
               <a href="#" class="custom-login-link">비밀번호 찾기</a>

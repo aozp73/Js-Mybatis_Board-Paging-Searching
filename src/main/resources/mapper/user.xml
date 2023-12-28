@@ -18,6 +18,10 @@
         select * from user_tb where id = #{id}
     </select>
 
+    <select id="findByEmail" resultType="User">
+        select * from user_tb where email = #{email}
+    </select>
+
     <select id="findByUsername" resultType="User">
         select * from user_tb where username = #{username}
     </select>

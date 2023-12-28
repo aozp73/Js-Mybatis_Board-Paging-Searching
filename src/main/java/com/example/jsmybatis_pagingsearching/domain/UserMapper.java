@@ -14,6 +14,8 @@ public interface UserMapper {
 
     public User findById(Long id);
 
+    public User findByEmail(String email);
+
     public Integer updateById(User user);
 
     public Integer deleteById(Long id);

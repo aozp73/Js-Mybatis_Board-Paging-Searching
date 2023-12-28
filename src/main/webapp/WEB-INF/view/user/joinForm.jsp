@@ -7,12 +7,13 @@
     <div class="text-center" style="margin-bottom: 35px">
         <h2>회원가입</h2>
     </div>
-    <form>
+    <form action="/join" method="post">
       <div class="mb-3">
         <input
           class="form-control"
           placeholder="이메일"
           id="email"
+          name="email"
         />
       </div>
       <div class="mb-3">
@@ -20,6 +21,7 @@
           class="form-control"
           placeholder="비밀번호"
           id="password"
+          name="password"
         />
       </div>
       <div class="mb-5">
@@ -27,16 +29,15 @@
           class="form-control"
           placeholder="아이디"
           id="username"
+          name="username"
         />
       </div>
 
       <div>
-        <div>
-          <div class="mb-2">
-            <button type="submit" class="btn btn-primary custom-join-btn">
-              등록하기
-            </button>
-          </div>
+        <div class="mb-2">
+          <button type="submit" class="btn btn-primary custom-join-btn">
+            등록하기
+          </button>
         </div>
       </div>
 
