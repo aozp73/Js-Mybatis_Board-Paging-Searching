@@ -14,7 +14,6 @@
                 class="form-control"
                 placeholder="이메일"
                 id="email"
-                name="email"
                 onkeyup="checkEmail()"
                 path="email"
                 required="true"
@@ -27,7 +26,6 @@
                     class="form-control"
                     placeholder="비밀번호"
                     id="password"
-                    name="password"
                     onkeyup="validatePassword()"
                     path="password"
                     required="true"
@@ -51,7 +49,6 @@
           class="form-control"
           placeholder="아이디"
           id="username"
-          name="username"
           path="username"
           required="true"
         />

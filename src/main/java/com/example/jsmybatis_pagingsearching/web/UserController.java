@@ -35,7 +35,7 @@ public class UserController {
     @PostMapping("/join")
     public String join(@ModelAttribute @Valid JoinInDTO joinInDTO, BindingResult bindingResult) {
         log.debug("POST - 회원가입");
-
+        // 유효성 체크 실패 시, 필드값 그대로 담아서 페이지 응답
         if (bindingResult.hasErrors()){
             return "/user/joinForm";
         }
@@ -46,7 +46,7 @@ public class UserController {
 
     @ResponseBody
     @GetMapping("/emailCheck")
-    public ResponseEntity<?> join(@RequestParam String email) {
+    public ResponseEntity<?> emailCheck(@RequestParam String email) {
         log.debug("POST - 이메일 체크");
         boolean isValid = userService.emailCheck(email);
         return new ResponseEntity<>(isValid, HttpStatus.OK);
