@@ -5,29 +5,31 @@
 <div style="margin-top: 70px; margin-bottom: 100px">
   <div class="container custom-login-custom-container mb-5 mt-5">
 
-    <form>
+    <form  action="/login" method="post">
   
       <div class="mb-3">
         <input
+          id="email"
+          name="email"
           type="email"
           class="form-control"
           placeholder="이메일"
-          id="email"
         />
       </div>
       <div class="mb-4">
         <input
+          id="password"
+          name="password"
           type="password"
           class="form-control"
           placeholder="비밀번호"
-          id="password"
         />
       </div>
 
       <div>
         <div>
           <div class="mb-2">
-            <button type="submit" action="/join" class="btn btn-primary custom-login-btn">
+            <button type="submit" class="btn btn-primary custom-login-btn">
               로그인
             </button>
           </div>

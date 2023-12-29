@@ -48,6 +48,8 @@
             <ul class="navbar-nav me-5">
               <li class="nav-item">
                 <a class="nav-link" href="/loginForm">로그인</a>
+                <a class="nav-link" href="/loginForm">aa</a>
+                <a class="nav-link" href="/loginForm">bb</a>
               </li>
             </ul>
           </div>

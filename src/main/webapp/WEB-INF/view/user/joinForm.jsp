@@ -10,47 +10,46 @@
   <form:form modelAttribute="joinInDTO" action="/join" method="post" onsubmit="return validateForm()">
       <div class="d-flex justify-content-between">
         <form:input
+                id="email"
+                path="email"
                 type="email"
                 class="form-control"
                 placeholder="이메일"
-                id="email"
                 onkeyup="checkEmail()"
-                path="email"
                 required="true"
         />
         <form:errors path="email" cssClass="error" />
       </div>
       <div id="emailCheckMessage" class="mb-3 ms-2"></div>
       <div class="mb-3">
-        <form:input type="password"
+        <form:input id="password"
+                    path="password"
+                    type="password"
                     class="form-control"
                     placeholder="비밀번호"
-                    id="password"
                     onkeyup="validatePassword()"
-                    path="password"
                     required="true"
         />
         <form:errors id="passwordError" path="password" cssClass="error" />
       </div>
       <div>
-        <form:input type="password"
+        <form:input id="passwordConfirmation"
+                    path="passwordConfirmation"
+                    type="password"
                     class="form-control"
                     placeholder="비밀번호 확인"
-                    id="passwordConfirmation"
                     onkeyup="validatePassword()"
-                    path="passwordConfirmation"
                     required="true"
         />
         <form:errors id="passwordConfirmationError" path="passwordConfirmation" cssClass="mt-2 mb-3 ms-2" cssStyle="color: orangered" />
       </div>
       <div class="mb-3 ms-2" id="passwordCheck" style="color: orangered"></div>
       <div class="mb-5">
-        <form:input
-          class="form-control"
-          placeholder="아이디"
-          id="username"
-          path="username"
-          required="true"
+        <form:input id="username"
+                    path="username"
+                    class="form-control"
+                    placeholder="아이디"
+                    required="true"
         />
         <form:errors path="username" cssClass="mt-2 mb-3 ms-2" cssStyle="color: orangered"  />
       </div>
