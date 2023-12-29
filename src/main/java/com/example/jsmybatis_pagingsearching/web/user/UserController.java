@@ -5,6 +5,7 @@ import com.example.jsmybatis_pagingsearching.web.user.dto.JoinInDTO;
 import com.example.jsmybatis_pagingsearching.web.user.dto.LoginInDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -56,9 +57,13 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(LoginInDTO loginInDTO) {
+    public ResponseEntity<String> login(LoginInDTO loginInDTO) {
         log.debug("POST - 로그인");
 
-        return "redirect:/loginForm";
+        String jwt = userService.login(loginInDTO);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + jwt);
+
+        return new ResponseEntity<>("Ok", headers, HttpStatus.OK);
     }
 }

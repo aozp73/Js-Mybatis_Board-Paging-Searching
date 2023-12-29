@@ -4,6 +4,7 @@ import com.example.jsmybatis_pagingsearching.domain.User;
 import com.example.jsmybatis_pagingsearching.web.user.UserRole;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -24,10 +25,10 @@ public class JoinInDTO {
     @Size(min = 1, max = 6, message = "6글자 이내 입력해주세요.")
     private String username;
 
-    public User toEntity() {
+    public User toEntity(BCryptPasswordEncoder passwordEncoder) {
         return User.builder()
                 .email(email)
-                .password(password)
+                .password(passwordEncoder.encode(password))
                 .username(username)
                 .role(UserRole.COMMON.getDisplayName())
                 .build();

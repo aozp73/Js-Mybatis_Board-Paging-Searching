@@ -1,11 +1,15 @@
 package com.example.jsmybatis_pagingsearching.service;
 
 import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.CustomException;
+import com.example.jsmybatis_pagingsearching.config.security.jwt.MyJwtUtil;
+import com.example.jsmybatis_pagingsearching.domain.User;
 import com.example.jsmybatis_pagingsearching.domain.UserMapper;
 import com.example.jsmybatis_pagingsearching.web.user.UserRole;
 import com.example.jsmybatis_pagingsearching.web.user.dto.JoinInDTO;
+import com.example.jsmybatis_pagingsearching.web.user.dto.LoginInDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -14,8 +18,11 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserMapper userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final MyJwtUtil myJwtUtil;
 
-    public void save(JoinInDTO joinInDTO){
+    // 회원가입
+    public void save(JoinInDTO joinInDTO) {
         log.debug("aa = {}", UserRole.COMMON);
         // 장난 치는거 체크
         if (userRepository.findByEmail(joinInDTO.getEmail()) != null) {
@@ -23,18 +30,31 @@ public class UserService {
         }
 
         try {
-            userRepository.insert(joinInDTO.toEntity());
+            userRepository.insert(joinInDTO.toEntity(passwordEncoder));
         } catch (Exception exception) {
             throw new CustomException("회원가입에 실패하였습니다.");
         }
     }
 
-    public Boolean emailCheck(String email){
+    public Boolean emailCheck(String email) {
         boolean isValid = true;
         if (userRepository.findByEmail(email) != null) {
             isValid = false;
         }
 
         return isValid;
+    }
+
+    // 로그인
+    public String login(LoginInDTO loginInDTO) {
+        User userEntity = userRepository.findByEmail(loginInDTO.getEmail());
+        if (userEntity == null) {
+            throw new CustomException("해당하는 아이디가 없습니다.");
+        }
+        if (!passwordEncoder.matches(loginInDTO.getPassword(), userEntity.getPassword())) {
+            throw new CustomException("비밀번호를 확인해주세요.");
+        }
+
+        return myJwtUtil.create(userEntity);
     }
 }
