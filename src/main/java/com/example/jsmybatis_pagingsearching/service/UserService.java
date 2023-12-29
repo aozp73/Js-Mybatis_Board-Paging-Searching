@@ -1,10 +1,9 @@
 package com.example.jsmybatis_pagingsearching.service;
 
 import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.CustomException;
-import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.Exception500;
-import com.example.jsmybatis_pagingsearching.domain.User;
 import com.example.jsmybatis_pagingsearching.domain.UserMapper;
-import com.example.jsmybatis_pagingsearching.web.dto.JoinInDTO;
+import com.example.jsmybatis_pagingsearching.web.user.UserRole;
+import com.example.jsmybatis_pagingsearching.web.user.dto.JoinInDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,6 +16,7 @@ public class UserService {
     private final UserMapper userRepository;
 
     public void save(JoinInDTO joinInDTO){
+        log.debug("aa = {}", UserRole.COMMON);
         // 장난 치는거 체크
         if (userRepository.findByEmail(joinInDTO.getEmail()) != null) {
             throw new CustomException("해당 이메일로 가입할 수 없습니다.");

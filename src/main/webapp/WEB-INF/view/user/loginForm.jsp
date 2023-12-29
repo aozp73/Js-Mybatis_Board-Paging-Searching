@@ -27,7 +27,7 @@
       <div>
         <div>
           <div class="mb-2">
-            <button type="submit" class="btn btn-primary custom-login-btn">
+            <button type="submit" action="/join" class="btn btn-primary custom-login-btn">
               로그인
             </button>
           </div>

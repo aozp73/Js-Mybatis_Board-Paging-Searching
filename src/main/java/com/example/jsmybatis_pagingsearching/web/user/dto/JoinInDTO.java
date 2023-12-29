@@ -1,6 +1,7 @@
-package com.example.jsmybatis_pagingsearching.web.dto;
+package com.example.jsmybatis_pagingsearching.web.user.dto;
 
 import com.example.jsmybatis_pagingsearching.domain.User;
+import com.example.jsmybatis_pagingsearching.web.user.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,6 +29,7 @@ public class JoinInDTO {
                 .email(email)
                 .password(password)
                 .username(username)
+                .role(UserRole.COMMON.getDisplayName())
                 .build();
     }
 }

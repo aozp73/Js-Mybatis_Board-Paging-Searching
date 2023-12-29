@@ -1,8 +1,7 @@
-package com.example.jsmybatis_pagingsearching.web;
+package com.example.jsmybatis_pagingsearching.web.user;
 
-import com.example.jsmybatis_pagingsearching.domain.User;
 import com.example.jsmybatis_pagingsearching.service.UserService;
-import com.example.jsmybatis_pagingsearching.web.dto.JoinInDTO;
+import com.example.jsmybatis_pagingsearching.web.user.dto.JoinInDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -41,7 +40,7 @@ public class UserController {
         }
 
         userService.save(joinInDTO);
-        return "redirect:/list";
+        return "redirect:/loginForm";
     }
 
     @ResponseBody

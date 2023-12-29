@@ -4,6 +4,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.jsmybatis_pagingsearching.config.security.principal.MyPrincipalDetails;
 import com.example.jsmybatis_pagingsearching.domain.User;
+import com.example.jsmybatis_pagingsearching.web.user.UserRole;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -2,6 +2,7 @@ package com.example.jsmybatis_pagingsearching.domain;
 
 import java.sql.Timestamp;
 
+import com.example.jsmybatis_pagingsearching.web.user.UserRole;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
