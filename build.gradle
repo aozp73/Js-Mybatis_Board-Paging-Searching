@@ -24,19 +24,23 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	
-	// DB
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
-	// runtimeOnly 'com.mysql:mysql-connector-j'
-	runtimeOnly 'com.h2database:h2'
-	
-	// JSP
-	implementation 'javax.servlet:jstl'
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 
 	// Security, JWT
 	implementation group: 'com.auth0', name: 'java-jwt', version: '4.3.0'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// Validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// DB
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
+	// runtimeOnly 'com.mysql:mysql-connector-j'
+	runtimeOnly 'com.h2database:h2'
+
+	// JSP
+	implementation 'javax.servlet:jstl'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
 
 	// Test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

@@ -1,5 +1,6 @@
 package com.example.jsmybatis_pagingsearching.web;
 
+import com.example.jsmybatis_pagingsearching.domain.User;
 import com.example.jsmybatis_pagingsearching.service.UserService;
 import com.example.jsmybatis_pagingsearching.web.dto.JoinInDTO;
 import lombok.RequiredArgsConstructor;
@@ -7,7 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Slf4j
 @Controller
@@ -23,14 +27,19 @@ public class UserController {
     }
 
     @GetMapping("/joinForm")
-    public String joinForm() {
+    public String joinForm(@ModelAttribute JoinInDTO joinInDTO) {
         log.debug("GET - 회원가입 페이지");
         return "user/joinForm";
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute JoinInDTO joinInDTO) {
+    public String join(@ModelAttribute @Valid JoinInDTO joinInDTO, BindingResult bindingResult) {
         log.debug("POST - 회원가입");
+
+        if (bindingResult.hasErrors()){
+            return "/user/joinForm";
+        }
+
         userService.save(joinInDTO);
         return "redirect:/list";
     }

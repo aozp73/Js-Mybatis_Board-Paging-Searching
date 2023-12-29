@@ -7,46 +7,55 @@
     <div class="text-center" style="margin-bottom: 35px">
         <h2>회원가입</h2>
     </div>
-    <form action="/join" method="post" onsubmit="return validateForm()">
-      <div class="mb-2 d-flex justify-content-between">
-        <input
+  <form:form modelAttribute="joinInDTO" action="/join" method="post" onsubmit="return validateForm()">
+      <div class="d-flex justify-content-between">
+        <form:input
+                type="email"
                 class="form-control"
                 placeholder="이메일"
                 id="email"
                 name="email"
                 onkeyup="checkEmail()"
-                required
+                path="email"
+                required="true"
         />
+        <form:errors path="email" cssClass="error" />
       </div>
       <div id="emailCheckMessage" class="mb-3 ms-2"></div>
       <div class="mb-3">
-        <input type="password"
-               class="form-control"
-               placeholder="비밀번호"
-               id="password"
-               name="password"
-               onkeyup="validatePassword()"
-               required
+        <form:input type="password"
+                    class="form-control"
+                    placeholder="비밀번호"
+                    id="password"
+                    name="password"
+                    onkeyup="validatePassword()"
+                    path="password"
+                    required="true"
         />
+        <form:errors id="passwordError" path="password" cssClass="error" />
       </div>
-      <div class="mb-2">
-        <input type="password"
-               class="form-control"
-               placeholder="비밀번호 확인"
-               id="passwordConfirmation"
-               onkeyup="validatePassword()"
-               required
+      <div>
+        <form:input type="password"
+                    class="form-control"
+                    placeholder="비밀번호 확인"
+                    id="passwordConfirmation"
+                    onkeyup="validatePassword()"
+                    path="passwordConfirmation"
+                    required="true"
         />
+        <form:errors id="passwordConfirmationError" path="passwordConfirmation" cssClass="mt-2 mb-3 ms-2" cssStyle="color: orangered" />
       </div>
-      <div class="mb-3 ms-2" class="form-control" id="passwordCheck" style="color: orangered"></div>
+      <div class="mb-3 ms-2" id="passwordCheck" style="color: orangered"></div>
       <div class="mb-5">
-        <input
+        <form:input
           class="form-control"
           placeholder="아이디"
           id="username"
           name="username"
-          required
+          path="username"
+          required="true"
         />
+        <form:errors path="username" cssClass="mt-2 mb-3 ms-2" cssStyle="color: orangered"  />
       </div>
 
       <div>
@@ -57,7 +66,7 @@
         </div>
       </div>
 
-    </form>
+    </form:form>
 
   </div>
 </div>

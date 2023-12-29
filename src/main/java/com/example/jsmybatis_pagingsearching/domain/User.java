@@ -4,6 +4,9 @@ import java.sql.Timestamp;
 
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 @Getter
 @Setter
 @Builder
@@ -14,6 +17,7 @@ public class User {
 
     private String email; // 로그인
     private String password;
+
     private String username;
     private String role;
 

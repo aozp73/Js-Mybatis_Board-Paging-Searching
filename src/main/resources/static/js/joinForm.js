@@ -1,4 +1,15 @@
 
+document.addEventListener("DOMContentLoaded", function() {
+
+    initializePage();
+});
+
+function initializePage() {
+    checkEmail();
+    validatePassword();
+}
+
+
 function validatePassword() {
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("passwordConfirmation").value;
@@ -9,10 +20,12 @@ function validatePassword() {
         return;
     }
 
-    if (password !== confirmPassword) {
-        passwordCheck.innerHTML = "비밀번호가 일치하지 않습니다.";
+    if (password === confirmPassword) {
+        passwordCheck.style.color = "green";
+        passwordCheck.innerHTML = "비밀번호 일치";
     } else {
-        passwordCheck.innerHTML = "";
+        passwordCheck.style.color = "red";
+        passwordCheck.innerHTML = "비밀번호가 일치하지 않습니다.";
     }
 }
 
