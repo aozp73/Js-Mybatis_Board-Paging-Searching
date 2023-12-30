@@ -30,8 +30,11 @@
                     <span>${board.id}</span>
                 </div>
                 <div class="custom-flex-item title custom-board-font" style="text-align: left">
-                    <span class="me-1">${board.title}</span>
-                    <span>(2)</span>
+                    <span class="me-2">${board.title}</span>
+
+                    <c:if test="${board.commentCount ne 0}">
+                        <span style="color: #a2a2a2">[${board.commentCount}]</span>
+                    </c:if>
                 </div>
                 <div class="custom-flex-item author custom-board-font">
                     <span>${board.username}</span>
