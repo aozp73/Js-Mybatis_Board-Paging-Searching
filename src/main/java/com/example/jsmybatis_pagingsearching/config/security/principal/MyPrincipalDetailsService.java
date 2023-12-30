@@ -19,7 +19,7 @@ public class MyPrincipalDetailsService implements UserDetailsService {
 
         User user = userRepository.findByEmail(email);
         if (user == null){
-            throw new UsernameNotFoundException("올바르지 않은 정보입니다.");
+            throw new UsernameNotFoundException("올바르지 않은 정보입니다. code:sec213");
         }
 
         return new MyPrincipalDetails(user);

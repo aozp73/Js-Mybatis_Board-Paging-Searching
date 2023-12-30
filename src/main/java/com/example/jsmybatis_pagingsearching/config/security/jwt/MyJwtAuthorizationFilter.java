@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 @Slf4j
 public class MyJwtAuthorizationFilter extends BasicAuthenticationFilter {
@@ -41,10 +42,10 @@ public class MyJwtAuthorizationFilter extends BasicAuthenticationFilter {
         try {
             DecodedJWT decodedJWT = jwtUtil.verify(jwt);
             Long id = decodedJWT.getClaim("id").asLong();
-            String email = decodedJWT.getClaim("email").asString();
+            String username = decodedJWT.getClaim("username").asString();
             String role = decodedJWT.getClaim("role").asString();
 
-            User user = User.builder().id(id).email(email).role(role).build();
+            User user = User.builder().id(id).username(username).role(role).build();
 
             MyPrincipalDetails myUserDetails = new MyPrincipalDetails(user);
             Authentication authentication = new UsernamePasswordAuthenticationToken(

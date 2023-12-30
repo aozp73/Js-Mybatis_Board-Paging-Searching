@@ -5,7 +5,7 @@
 <div style="margin-top: 70px; margin-bottom: 100px">
   <div class="container custom-login-custom-container mb-5 mt-5">
 
-    <form>
+    <form onsubmit="login(event)">
   
       <div class="mb-3">
         <input
@@ -14,6 +14,7 @@
           type="email"
           class="form-control"
           placeholder="이메일"
+          required
         />
       </div>
       <div class="mb-4">
@@ -23,13 +24,14 @@
           type="password"
           class="form-control"
           placeholder="비밀번호"
+          required
         />
       </div>
 
       <div>
         <div>
           <div class="mb-2">
-            <button type="button" onclick="login()" class="btn btn-primary custom-login-btn">
+            <button type="submit" class="btn btn-primary custom-login-btn">
               로그인
             </button>
           </div>
@@ -49,29 +51,6 @@
   </div>
 </div>
 
-<Script>
-  function login() {
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
 
-    // AJAX 또는 폼 전송으로 로그인 요청 후 토큰을 받아옴
-    $.ajax({
-      type: 'POST',
-      url: '/login',
-      data: {
-        email,
-        password
-      },
-      success: function (data, textStatus, request) {
-        var jwtToken = request.getResponseHeader('Authorization');
-        localStorage.setItem('jwtToken', jwtToken);
-        window.location.href = '/';
-      },
-      error: function (error) {
-        alert(error.responseJSON.data);
-      }
-    });
-  }
-</Script>
-
-<%@ include file="../layout/footer.jsp" %>
+  <script src="/js/loginForm.js"></script>
+  <%@ include file="../layout/footer.jsp" %>

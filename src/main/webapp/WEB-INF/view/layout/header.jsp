@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,10 +48,16 @@
               </li>
             </ul>
             <ul class="navbar-nav me-5">
-              <li class="nav-item">
-                <a class="nav-link" href="/loginForm">로그인</a>
-                <a class="nav-link" href="/loginForm">aa</a>
-                <a class="nav-link" href="/loginForm">bb</a>
+              <li id="statusLogin" class="nav-item" style="display: none">
+                <div class="d-flex">
+                  <span id="statusUsername" class="nav-link me-2"></span>
+                  <a class="nav-link nav-link-logout" onclick="logout()">로그아웃</a>
+                </div>
+              </li>
+              <li id="statusLogout" class="nav-item" style="display: none">
+                <div>
+                  <a class="nav-link" href="/loginForm">로그인</a>
+                </div>
               </li>
             </ul>
           </div>
@@ -57,3 +65,5 @@
 
       </div>
     </nav>
+
+    <script src="/js/header.js"></script>

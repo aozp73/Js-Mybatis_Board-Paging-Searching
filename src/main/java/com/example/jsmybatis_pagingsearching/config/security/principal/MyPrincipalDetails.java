@@ -3,6 +3,7 @@ package com.example.jsmybatis_pagingsearching.config.security.principal;
 import com.example.jsmybatis_pagingsearching.domain.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
@@ -22,16 +23,17 @@ public class MyPrincipalDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collector = new ArrayList<>();
-//        collector.add(() -> { return user.get; });
+        collector.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
         return collector;
     }
     @Override
     public String getPassword() {
         return user.getPassword();
     }
+
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return user.getUsername();
     }
 
     @Override

@@ -34,6 +34,7 @@ public class MyJwtUtil {
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXP))
                 .withClaim("id", user.getId())
                 .withClaim("email", user.getEmail())
+                .withClaim("username", user.getUsername())
                 .withClaim("role", "ROLE_" + user.getRole())
                 .sign(Algorithm.HMAC512(SECRET));
 

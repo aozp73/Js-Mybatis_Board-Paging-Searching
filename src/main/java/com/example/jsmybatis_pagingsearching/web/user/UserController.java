@@ -1,5 +1,7 @@
 package com.example.jsmybatis_pagingsearching.web.user;
 
+import com.example.jsmybatis_pagingsearching.config.security.jwt.MyJwtUtil;
+import com.example.jsmybatis_pagingsearching.config.security.principal.MyPrincipalDetails;
 import com.example.jsmybatis_pagingsearching.service.UserService;
 import com.example.jsmybatis_pagingsearching.web.user.dto.JoinInDTO;
 import com.example.jsmybatis_pagingsearching.web.user.dto.LoginInDTO;
@@ -8,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,7 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
+    private final MyJwtUtil myJwtUtil;
 
     // 회원 가입
     @GetMapping("/joinForm")
@@ -57,13 +61,27 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(LoginInDTO loginInDTO) {
+    public ResponseEntity<?> login(LoginInDTO loginInDTO) {
         log.debug("POST - 로그인");
 
         String jwt = userService.login(loginInDTO);
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + jwt);
+        headers.add("Authorization", jwt);
 
         return new ResponseEntity<>("Ok", headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/validateToken")
+    public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String token) {
+        String jwt = token.replace(myJwtUtil.TOKEN_PREFIX, "");
+        boolean isValid = myJwtUtil.validateToken(jwt);
+
+        return new ResponseEntity<>(isValid, HttpStatus.OK);
+    }
+
+    @GetMapping("/userInfo")
+    public ResponseEntity<?> getUserInfo(@AuthenticationPrincipal MyPrincipalDetails myPrincipalDetails) {
+
+        return new ResponseEntity<>(myPrincipalDetails.getUser(), HttpStatus.OK);
     }
 }

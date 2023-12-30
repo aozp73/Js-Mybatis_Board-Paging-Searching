@@ -1,6 +1,7 @@
 package com.example.jsmybatis_pagingsearching.service;
 
 import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.CustomException;
+import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.Exception400;
 import com.example.jsmybatis_pagingsearching.config.security.jwt.MyJwtUtil;
 import com.example.jsmybatis_pagingsearching.domain.User;
 import com.example.jsmybatis_pagingsearching.domain.UserMapper;
@@ -49,10 +50,10 @@ public class UserService {
     public String login(LoginInDTO loginInDTO) {
         User userEntity = userRepository.findByEmail(loginInDTO.getEmail());
         if (userEntity == null) {
-            throw new CustomException("해당하는 아이디가 없습니다.");
+            throw new Exception400("해당하는 아이디가 없습니다.");
         }
         if (!passwordEncoder.matches(loginInDTO.getPassword(), userEntity.getPassword())) {
-            throw new CustomException("비밀번호를 확인해주세요.");
+            throw new Exception400("비밀번호를 확인해주세요.");
         }
 
         return myJwtUtil.create(userEntity);
