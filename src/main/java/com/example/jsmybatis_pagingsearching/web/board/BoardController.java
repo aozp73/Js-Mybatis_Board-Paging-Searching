@@ -1,6 +1,7 @@
 package com.example.jsmybatis_pagingsearching.web.board;
 
 import com.example.jsmybatis_pagingsearching.service.BoardService;
+import com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,7 @@ public class BoardController {
     @GetMapping("/board/detail/{id}")
     public String detail(@PathVariable Long id) {
         log.debug("GET - 상세 페이지 요청");
-        boardService.findById(id);
+        BoardDetail_OutDTO byId = boardService.findById(id);
 
         return "board/detail";
     }

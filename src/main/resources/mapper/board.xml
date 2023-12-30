@@ -13,7 +13,7 @@
         select * from board_tb
     </select>
 
-    <select id="findAllForBoardList" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardList_OutDTO">
+    <select id="findAllWithUserForList" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardList_OutDTO">
     <![CDATA[
         SELECT bt.*,
                ut.username,
@@ -27,8 +27,29 @@
         ]]>
     </select>
 
-    <select id="findAllForBoardDetail" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO">
-
+    <select id="findAllWithUserForDetail" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO">
+    <![CDATA[
+        SELECT bt.*,
+               ut.username,
+               bt.created_at AS createdAtFormat,
+               COUNT(ct.id) AS commentCount
+        FROM board_tb bt
+        INNER JOIN user_tb ut ON bt.user_id = ut.id
+        LEFT OUTER JOIN comment_tb ct ON bt.id = ct.board_id
+        WHERE bt.id = #{boardId}
+        GROUP BY bt.id
+        ORDER BY bt.created_at DESC;
+        ]]>
+    </select>
+    <select id="findAllWithCommentForDetail" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO$CommentDTO">
+        <![CDATA[
+        select ct.*,
+               ut.username,
+               ct.created_at,
+        from comment_tb ct
+        INNER JOIN user_tb ut ON ct.user_id = ut.id
+        where ct.board_id = #{boardId}
+        ]]>
     </select>
 
     <select id="findById" resultType="Board">

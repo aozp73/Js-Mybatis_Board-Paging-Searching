@@ -12,9 +12,11 @@ public interface BoardMapper {
 
     public List<Board> findAll();
 
-    public List<BoardList_OutDTO> findAllForBoardList();
+    public List<BoardList_OutDTO> findAllWithUserForList();
 
-    public List<BoardDetail_OutDTO> findAllForBoardDetail();
+    // 게시판 상세
+    public BoardDetail_OutDTO findAllWithUserForDetail(Long boardId);
+    public List<BoardDetail_OutDTO.CommentDTO> findAllWithCommentForDetail(Long boardId);
 
     public Board findById(Long id);
 
