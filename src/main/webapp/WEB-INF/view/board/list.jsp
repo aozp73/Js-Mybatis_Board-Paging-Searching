@@ -34,10 +34,10 @@
                     <span>(2)</span>
                 </div>
                 <div class="custom-flex-item author custom-board-font">
-                    <span>${board.content}</span>
+                    <span>${board.username}</span>
                 </div>
                 <div class="custom-flex-item date custom-board-font">
-                    <span>${board.createdAt}</span>
+                    <span>${board.createdAtFormat}</span>
                 </div>
                 <div class="custom-flex-item view custom-board-font">
                     <span>${board.views}</span>

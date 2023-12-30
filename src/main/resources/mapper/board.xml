@@ -13,6 +13,17 @@
         select * from board_tb
     </select>
 
+    <select id="findAllForBoardList" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardList_OutDTO">
+    <![CDATA[
+        SELECT board_tb.*,
+               user_tb.username,
+               FORMATDATETIME(board_tb.created_at, 'yyyy/MM/dd') AS createdAtFormat
+        FROM board_tb
+        INNER JOIN user_tb ON board_tb.user_id = user_tb.id
+        ORDER BY board_tb.created_at DESC;
+        ]]>
+    </select>
+
     <select id="findById" resultType="Board">
         select * from board_tb where id = #{id}
     </select>
