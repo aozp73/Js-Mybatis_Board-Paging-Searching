@@ -6,8 +6,8 @@ import com.example.jsmybatis_pagingsearching.config.security.jwt.MyJwtUtil;
 import com.example.jsmybatis_pagingsearching.domain.User;
 import com.example.jsmybatis_pagingsearching.domain.UserMapper;
 import com.example.jsmybatis_pagingsearching.web.user.UserRole;
-import com.example.jsmybatis_pagingsearching.web.user.dto.JoinInDTO;
-import com.example.jsmybatis_pagingsearching.web.user.dto.LoginInDTO;
+import com.example.jsmybatis_pagingsearching.web.user.dto.Join_InDTO;
+import com.example.jsmybatis_pagingsearching.web.user.dto.Login_InDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +23,7 @@ public class UserService {
     private final MyJwtUtil myJwtUtil;
 
     // 회원가입
-    public void save(JoinInDTO joinInDTO) {
+    public void save(Join_InDTO joinInDTO) {
         log.debug("aa = {}", UserRole.COMMON);
         // 장난 치는거 체크
         if (userRepository.findByEmail(joinInDTO.getEmail()) != null) {
@@ -47,7 +47,7 @@ public class UserService {
     }
 
     // 로그인
-    public String login(LoginInDTO loginInDTO) {
+    public String login(Login_InDTO loginInDTO) {
         User userEntity = userRepository.findByEmail(loginInDTO.getEmail());
         if (userEntity == null) {
             throw new Exception400("해당하는 아이디가 없습니다.");

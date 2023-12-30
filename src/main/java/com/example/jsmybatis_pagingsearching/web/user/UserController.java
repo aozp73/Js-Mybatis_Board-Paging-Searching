@@ -3,8 +3,8 @@ package com.example.jsmybatis_pagingsearching.web.user;
 import com.example.jsmybatis_pagingsearching.config.security.jwt.MyJwtUtil;
 import com.example.jsmybatis_pagingsearching.config.security.principal.MyPrincipalDetails;
 import com.example.jsmybatis_pagingsearching.service.UserService;
-import com.example.jsmybatis_pagingsearching.web.user.dto.JoinInDTO;
-import com.example.jsmybatis_pagingsearching.web.user.dto.LoginInDTO;
+import com.example.jsmybatis_pagingsearching.web.user.dto.Join_InDTO;
+import com.example.jsmybatis_pagingsearching.web.user.dto.Login_InDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -27,13 +27,13 @@ public class UserController {
 
     // 회원 가입
     @GetMapping("/joinForm")
-    public String joinForm(@ModelAttribute JoinInDTO joinInDTO) {
+    public String joinForm(@ModelAttribute Join_InDTO joinInDTO) {
         log.debug("GET - 회원가입 페이지");
         return "user/joinForm";
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute @Valid JoinInDTO joinInDTO, BindingResult bindingResult) {
+    public String join(@ModelAttribute @Valid Join_InDTO joinInDTO, BindingResult bindingResult) {
         log.debug("POST - 회원가입");
         // 유효성 체크 실패 시, 필드값 그대로 담아서 페이지 응답
         if (bindingResult.hasErrors()){
@@ -61,7 +61,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(LoginInDTO loginInDTO) {
+    public ResponseEntity<?> login(Login_InDTO loginInDTO) {
         log.debug("POST - 로그인");
 
         String jwt = userService.login(loginInDTO);

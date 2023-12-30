@@ -9,7 +9,7 @@
         values(#{title}, #{content}, #{userId}, now())
     </insert>
 
-    <select id="findByAll" resultType="Board">
+    <select id="findAll" resultType="Board">
         select * from board_tb
     </select>
 

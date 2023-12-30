@@ -10,7 +10,7 @@
         values(#{username}, #{password}, #{email}, #{role}, now())
     </insert>
 
-    <select id="findByAll" resultType="User">
+    <select id="findAll" resultType="User">
         select * from user_tb
     </select>
 

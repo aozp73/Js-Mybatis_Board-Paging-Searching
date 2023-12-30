@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     public Integer insert(User user);
 
-    public List<User> findByAll();
+    public List<User> findAll();
 
     public User findByUsername(String username);
 

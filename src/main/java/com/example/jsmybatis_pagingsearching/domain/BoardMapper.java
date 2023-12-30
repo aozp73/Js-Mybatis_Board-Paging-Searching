@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface BoardMapper {
     public Integer insert(Board board);
 
-    public List<Board> findByAll();
+    public List<Board> findAll();
 
     public Board findById(Long id);
 

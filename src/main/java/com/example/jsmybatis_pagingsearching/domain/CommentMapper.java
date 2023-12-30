@@ -8,7 +8,7 @@ import java.util.List;
 public interface CommentMapper {
     public Integer insert(Comment comment);
 
-    public List<Board> findByAll();
+    public List<Board> findAll();
 
     public Board findById(Long id);
 

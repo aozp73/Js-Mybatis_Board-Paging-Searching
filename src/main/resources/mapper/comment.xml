@@ -10,7 +10,7 @@
         values(#{userId}, #{boardId}, #{content}, now())
     </insert>
 
-    <select id="findByAll" resultType="Comment">
+    <select id="findAll" resultType="Comment">
         select * from comment_tb
     </select>
 
