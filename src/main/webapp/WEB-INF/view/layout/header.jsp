@@ -44,7 +44,7 @@
           <div class="d-flex justify-content-between w-100">
             <ul class="navbar-nav ms-3">
               <li class="nav-item">
-                <a class="nav-link" href="/list">게시판</a>
+                <a class="nav-link" href="/board/list">게시판</a>
               </li>
             </ul>
             <ul class="navbar-nav me-5">

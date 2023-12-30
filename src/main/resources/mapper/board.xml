@@ -27,6 +27,10 @@
         ]]>
     </select>
 
+    <select id="findAllForBoardDetail" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO">
+
+    </select>
+
     <select id="findById" resultType="Board">
         select * from board_tb where id = #{id}
     </select>

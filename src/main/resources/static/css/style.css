@@ -97,6 +97,13 @@
   color: #949494;
 }
 
+.custom-title-alink {
+  text-decoration: none;
+  color: inherit;
+}
+.custom-title-alink:hover {
+  text-decoration: underline;
+}
 
 /* 글 목록 페이지 */
 .custom-board-list-container {

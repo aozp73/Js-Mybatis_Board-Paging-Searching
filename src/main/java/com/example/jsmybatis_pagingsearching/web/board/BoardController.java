@@ -16,7 +16,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/list")
+    @GetMapping("/board/list")
     public String list(Model model) {
         log.debug("GET - 글 목록 페이지");
         model.addAttribute("boardList", boardService.findAll());
@@ -24,9 +24,11 @@ public class BoardController {
         return "board/list";
     }
     
-    @GetMapping("/detail/{id}")
+    @GetMapping("/board/detail/{id}")
     public String detail(@PathVariable Long id) {
         log.debug("GET - 상세 페이지 요청");
+        boardService.findById(id);
+
         return "board/detail";
     }
 
