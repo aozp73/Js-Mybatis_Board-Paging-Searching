@@ -5,6 +5,7 @@
 <div style="margin-top: 50px; margin-bottom: 50px">
     <div class="container custom-board-list-container mb-5 mt-5">
         <div class="mb-5">
+
             <div class="custom-top-layout">
                 <div class="custom-flex-item number">
                     <span>번호</span>
@@ -22,43 +23,27 @@
                     <span>조회</span>
                 </div>
             </div>
+
+            <c:forEach var="board" items="${boardList}">
             <div class="custom-board-layout">
                 <div class="custom-flex-item number custom-board-font">
-                    <span>2</span>
+                    <span>${board.id}</span>
                 </div>
                 <div class="custom-flex-item title custom-board-font" style="text-align: left">
-                    <span class="me-1">안녕하세요!!</span>
+                    <span class="me-1">${board.title}</span>
                     <span>(2)</span>
                 </div>
                 <div class="custom-flex-item author custom-board-font">
-                    <span>aozp73</span>
+                    <span>${board.content}</span>
                 </div>
                 <div class="custom-flex-item date custom-board-font">
-                    <span>2023/12/27</span>
+                    <span>${board.createdAt}</span>
                 </div>
                 <div class="custom-flex-item view custom-board-font">
-                    <span>1</span>
+                    <span>${board.views}</span>
                 </div>
             </div>
-
-            <div class="custom-board-layout">
-                <div class="custom-flex-item number custom-board-font">
-                    <span>1</span>
-                </div>
-                <div class="custom-flex-item title custom-board-font" style="text-align: left">
-                    <span class="me-1">반갑습니다 !!</span>
-                    <span></span>
-                </div>
-                <div class="custom-flex-item author custom-board-font">
-                    <span>paozu0032</span>
-                </div>
-                <div class="custom-flex-item date custom-board-font">
-                    <span>2023/12/28</span>
-                </div>
-                <div class="custom-flex-item view custom-board-font">
-                    <span>13</span>
-                </div>
-            </div>
+            </c:forEach>
 
         </div>
 
