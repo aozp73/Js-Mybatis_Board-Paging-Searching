@@ -48,17 +48,23 @@
               </li>
             </ul>
             <ul class="navbar-nav me-5">
-              <li id="statusLogin" class="nav-item" style="display: none">
-                <div class="d-flex">
-                  <span id="statusUsername" class="nav-link me-2"></span>
-                  <a class="nav-link nav-link-logout" onclick="logout()">로그아웃</a>
-                </div>
-              </li>
-              <li id="statusLogout" class="nav-item" style="display: none">
-                <div>
-                  <a class="nav-link" href="/loginForm">로그인</a>
-                </div>
-              </li>
+              <sec:authorize access="isAuthenticated()">
+                <li id="statusLogin" class="nav-item">
+                  <div class="d-flex">
+                    <span class="nav-link me-2">
+                        <sec:authentication property="name" />
+                    </span>
+                    <a class="nav-link" href="/logout">로그아웃</a>
+                  </div>
+                </li>
+              </sec:authorize>
+              <sec:authorize access="!isAuthenticated()">
+                <li class="nav-item">
+                  <div>
+                    <a class="nav-link" href="/loginForm">로그인</a>
+                  </div>
+                </li>
+              </sec:authorize>
             </ul>
           </div>
         </div>

@@ -4,7 +4,7 @@
 
 <div style="margin-top: 50px; margin-bottom: 50px">
     <div class="container custom-board-list-container mb-5 mt-5">
-        <div class="mb-5">
+        <div class="mb-3">
 
             <div class="custom-top-layout">
                 <div class="custom-flex-item number">
@@ -48,7 +48,10 @@
                 </div>
             </div>
             </c:forEach>
+        </div>
 
+        <div class="d-flex justify-content-end mb-2">
+            <a href="/auth/saveForm" class="btn btn-secondary btn-sm me-1">글 등록</a>
         </div>
 
         <div>
@@ -84,5 +87,6 @@
         </div>
     </div>
 </div>
+
 
 <%@ include file="../layout/footer.jsp" %>

@@ -1,6 +1,5 @@
 package com.example.jsmybatis_pagingsearching.web.user;
 
-import com.example.jsmybatis_pagingsearching.config.security.jwt.MyJwtUtil;
 import com.example.jsmybatis_pagingsearching.config.security.principal.MyPrincipalDetails;
 import com.example.jsmybatis_pagingsearching.service.UserService;
 import com.example.jsmybatis_pagingsearching.web.user.dto.Join_InDTO;
@@ -23,7 +22,6 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
-    private final MyJwtUtil myJwtUtil;
 
     // 회원 가입
     @GetMapping("/joinForm")
@@ -60,28 +58,4 @@ public class UserController {
         return "user/loginForm";
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(Login_InDTO loginInDTO) {
-        log.debug("POST - 로그인");
-
-        String jwt = userService.login(loginInDTO);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", jwt);
-
-        return new ResponseEntity<>("Ok", headers, HttpStatus.OK);
-    }
-
-    @GetMapping("/validateToken")
-    public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String token) {
-        String jwt = token.replace(myJwtUtil.TOKEN_PREFIX, "");
-        boolean isValid = myJwtUtil.validateToken(jwt);
-
-        return new ResponseEntity<>(isValid, HttpStatus.OK);
-    }
-
-    @GetMapping("/userInfo")
-    public ResponseEntity<?> getUserInfo(@AuthenticationPrincipal MyPrincipalDetails myPrincipalDetails) {
-
-        return new ResponseEntity<>(myPrincipalDetails.getUser(), HttpStatus.OK);
-    }
 }

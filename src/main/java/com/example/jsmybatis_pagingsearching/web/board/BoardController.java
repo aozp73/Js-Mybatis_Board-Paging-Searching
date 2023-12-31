@@ -1,8 +1,11 @@
 package com.example.jsmybatis_pagingsearching.web.board;
 
+import com.example.jsmybatis_pagingsearching.config.security.principal.MyPrincipalDetails;
 import com.example.jsmybatis_pagingsearching.service.BoardService;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,16 +29,16 @@ public class BoardController {
     }
     
     @GetMapping("/board/detail/{id}")
-    public String detail(@PathVariable Long id) {
+    public String detail(@PathVariable Long id, Model model) {
         log.debug("GET - 상세 페이지 요청");
-        BoardDetail_OutDTO byId = boardService.findById(id);
+        model.addAttribute("boardList", boardService.findById(id));
 
         return "board/detail";
     }
 
-    @GetMapping("/saveForm")
+    @GetMapping("/auth/saveForm")
     public String saveForm() {
-        log.debug("GET - 글 수정 페이지");
+        log.debug("GET - 글 등록 페이지");
         return "board/saveForm";
     }
 

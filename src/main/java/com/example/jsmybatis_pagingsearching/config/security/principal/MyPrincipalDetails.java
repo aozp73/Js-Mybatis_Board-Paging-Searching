@@ -23,9 +23,10 @@ public class MyPrincipalDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collector = new ArrayList<>();
-        collector.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+        collector.add(() -> { return "ROLE_" + user.getRole(); });
         return collector;
     }
+
     @Override
     public String getPassword() {
         return user.getPassword();

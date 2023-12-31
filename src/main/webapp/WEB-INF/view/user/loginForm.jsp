@@ -5,12 +5,16 @@
 <div style="margin-top: 70px; margin-bottom: 100px">
   <div class="container custom-login-custom-container mb-5 mt-5">
 
-    <form onsubmit="login(event)">
-  
+    <form action="/login" method="POST">
+      <c:if test="${param.error != null}">
+        <div class="alert alert-danger">
+          올바르지 않은 정보입니다.
+        </div>
+      </c:if>
       <div class="mb-3">
         <input
           id="email"
-          name="email"
+          name="username"
           type="email"
           class="form-control"
           placeholder="이메일"
