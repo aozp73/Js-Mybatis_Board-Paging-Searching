@@ -11,10 +11,9 @@ spring:
   output:
     ansi:
       enabled: always
-  mvc:
-    view:
-      prefix: /WEB-INF/view/
-      suffix: .jsp
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
   # datasource:
   #   url: jdbc:mysql://localhost:3306/paging_searching?serverTimezone=Asia/Seoul
   #   driver-class-name: com.mysql.cj.jdbc.Driver

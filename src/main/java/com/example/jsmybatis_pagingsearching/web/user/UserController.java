@@ -25,17 +25,17 @@ public class UserController {
 
     // 회원 가입
     @GetMapping("/joinForm")
-    public String joinForm(@ModelAttribute Join_InDTO joinInDTO) {
+    public String joinForm(@ModelAttribute("joinInDTO") Join_InDTO joinInDTO) {
         log.debug("GET - 회원가입 페이지");
         return "user/joinForm";
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute @Valid Join_InDTO joinInDTO, BindingResult bindingResult) {
+    public String join(@ModelAttribute("joinInDTO") @Valid Join_InDTO joinInDTO, BindingResult bindingResult) {
         log.debug("POST - 회원가입");
         // 유효성 체크 실패 시, 필드값 그대로 담아서 페이지 응답
         if (bindingResult.hasErrors()){
-            return "/user/joinForm";
+            return "user/joinForm";
         }
 
         userService.save(joinInDTO);

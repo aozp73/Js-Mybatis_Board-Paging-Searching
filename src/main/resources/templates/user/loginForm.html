@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ include file="../layout/header.jsp" %>
+<%@ include file="../common/fragments/header.html" %>
 
 <div style="margin-top: 70px; margin-bottom: 100px">
   <div class="container custom-login-custom-container mb-5 mt-5">
 
-    <form action="/login" method="POST">
+    <form th:action="@{/login}" method="POST">
       <c:if test="${param.error != null}">
-        <div class="alert alert-danger">
+        <div th:if="${param.error != null}" class="alert alert-danger">
           올바르지 않은 정보입니다.
         </div>
       </c:if>
@@ -57,4 +57,4 @@
 
 
   <script src="/js/loginForm.js"></script>
-  <%@ include file="../layout/footer.jsp" %>
+  <%@ include file="../common/fragments/footer.html" %>
