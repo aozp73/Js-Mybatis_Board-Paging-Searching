@@ -1,6 +1,7 @@
 package com.example.jsmybatis_pagingsearching.web.user;
 
 import com.example.jsmybatis_pagingsearching.config.security.principal.MyPrincipalDetails;
+import com.example.jsmybatis_pagingsearching.domain.User;
 import com.example.jsmybatis_pagingsearching.service.UserService;
 import com.example.jsmybatis_pagingsearching.web.user.dto.Join_InDTO;
 import com.example.jsmybatis_pagingsearching.web.user.dto.Login_InDTO;

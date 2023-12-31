@@ -12,7 +12,7 @@
         <div class="text-center" style="margin-bottom: 35px">
             <h2>회원가입</h2>
         </div>
-          <form th:action="@{/join}" th:object="${joinInDTO}" method="post" onsubmit="return validateForm()">
+          <form th:action="@{/join}" th:object="${joinInDTO}" method="POST" onsubmit="return validateForm()">
           <div class="d-flex justify-content-between">
             <input type="email" th:field="*{email}" onkeyup="checkEmail()"
                    class="form-control" placeholder="이메일" required>
