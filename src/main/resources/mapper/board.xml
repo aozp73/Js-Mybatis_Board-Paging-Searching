@@ -59,7 +59,8 @@
     <update id="updateById">
         update board_tb 
            set title = #{title},
-               content = #{content}
+               content = #{content},
+               views = #{views}
          where id = #{id}
     </update>
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -28,18 +29,25 @@ public class BoardController {
         return "pages/board/list";
     }
     
-    @GetMapping("/board/detail/{id}")
-    public String detail(@PathVariable Long id, Model model) {
+    @GetMapping("/board/detail/{boardId}")
+    public String detail(@PathVariable Long boardId, Model model) {
         log.debug("GET - 상세 페이지 요청");
-        model.addAttribute("boardList", boardService.findById(id));
+        boardService.viewsCount(boardId);
+        model.addAttribute("boardList", boardService.findById(boardId));
 
         return "pages/board/detail";
     }
 
-    @GetMapping("/auth/saveForm")
+    @GetMapping("/auth/board")
     public String saveForm() {
         log.debug("GET - 글 등록 페이지");
         return "pages/board/saveForm";
+    }
+
+    @PostMapping("/auth/board")
+    public String save() {
+        log.debug("POST - 글 등록");
+        return "redirect:/board/list";
     }
 
 }
