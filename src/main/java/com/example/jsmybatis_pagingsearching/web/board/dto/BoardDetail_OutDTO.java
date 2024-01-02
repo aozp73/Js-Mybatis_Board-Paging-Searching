@@ -33,6 +33,7 @@ public class BoardDetail_OutDTO {
     @ToString
     public static class CommentDTO {
         private Long id;
+        private Long userId;
         private String username;
         private String content;
         private Timestamp createdAt;

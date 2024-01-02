@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping("/joinForm")
     public String joinForm(@ModelAttribute("joinInDTO") Join_InDTO joinInDTO) {
         log.debug("GET - 회원가입 페이지");
-        return "user/joinForm";
+        return "pages/user/joinForm";
     }
 
     @PostMapping("/join")
@@ -56,7 +56,7 @@ public class UserController {
     @GetMapping("/loginForm")
     public String loginForm() {
         log.debug("GET - 로그인 페이지");
-        return "user/loginForm";
+        return "pages/user/loginForm";
     }
 
 }

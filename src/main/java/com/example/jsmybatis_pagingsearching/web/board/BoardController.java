@@ -25,7 +25,7 @@ public class BoardController {
         log.debug("GET - 글 목록 페이지");
         model.addAttribute("boardList", boardService.findAll());
 
-        return "board/list";
+        return "pages/board/list";
     }
     
     @GetMapping("/board/detail/{id}")
@@ -33,13 +33,13 @@ public class BoardController {
         log.debug("GET - 상세 페이지 요청");
         model.addAttribute("boardList", boardService.findById(id));
 
-        return "board/detail";
+        return "pages/board/detail";
     }
 
     @GetMapping("/auth/saveForm")
     public String saveForm() {
         log.debug("GET - 글 등록 페이지");
-        return "board/saveForm";
+        return "pages/board/saveForm";
     }
 
 }
