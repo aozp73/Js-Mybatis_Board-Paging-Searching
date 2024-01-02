@@ -34,7 +34,7 @@
                         <span th:text="${board.id}"></span>
                     </div>
                     <div class="custom-flex-item title custom-board-font" style="text-align: left">
-                        <a th:href="@{/board/detail/{id}(id=${board.id})}" class="custom-title-alink">
+                        <a th:href="@{/board/{id}(id=${board.id})}" class="custom-title-alink">
                             <span th:text="${board.title}"></span>
                         </a>
                         <span th:if="${board.commentCount ne 0}" class="ms-2" style="color: #a2a2a2"

@@ -4,6 +4,7 @@ import com.example.jsmybatis_pagingsearching.advice.exception.ResponseDTO;
 import com.example.jsmybatis_pagingsearching.config.security.principal.MyUserDetails;
 import com.example.jsmybatis_pagingsearching.service.BoardService;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardSave_InDTO;
+import com.example.jsmybatis_pagingsearching.web.board.dto.BoardUpdate_OutDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,7 +24,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/board/list")
+    @GetMapping("/board")
     public String list(Model model) {
         log.debug("GET - 게시글 목록 페이지");
         model.addAttribute("boardList", boardService.findAll());
@@ -31,7 +32,7 @@ public class BoardController {
         return "pages/board/list";
     }
     
-    @GetMapping("/board/detail/{boardId}")
+    @GetMapping("/board/{boardId}")
     public String detail(@PathVariable Long boardId, Model model) {
         log.debug("GET - 게시글 상세 페이지");
         boardService.viewsCount(boardId);
@@ -64,5 +65,13 @@ public class BoardController {
         boardService.delete(boardId, myUserDetails.getUser().getId());
 
         return ResponseEntity.ok().body(new ResponseDTO<>().data("ok"));
+    }
+
+    @GetMapping("/auth/board/{boardId}")
+    public String updateForm(@PathVariable Long boardId, @AuthenticationPrincipal MyUserDetails myUserDetails, Model model) {
+        log.debug("GET - 게시글 수정 페이지");
+        model.addAttribute("board", boardService.updateForm(boardId, myUserDetails.getUser().getId()));
+
+        return "pages/board/updateForm";
     }
 }

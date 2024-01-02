@@ -8,6 +8,7 @@ import com.example.jsmybatis_pagingsearching.domain.BoardMapper;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardList_OutDTO;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardSave_InDTO;
+import com.example.jsmybatis_pagingsearching.web.board.dto.BoardUpdate_OutDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -96,5 +97,21 @@ public class BoardService {
         } catch (Exception exception) {
             throw new Exception500("게시글 삭제에 실패하였습니다.");
         }
+    }
+
+    @Transactional
+    public BoardUpdate_OutDTO updateForm(Long boardId, Long userId) {
+        Board boardEntity;
+        try {
+            boardEntity = boardRepository.findById(boardId);
+        } catch (Exception exception) {
+            throw new CustomException("게시글이 존재하지 않습니다.");
+        }
+
+        if (!Objects.equals(boardEntity.getUserId(), userId)) {
+            throw new CustomException("작성자만 수정할 수 있습니다.");
+        }
+
+        return new BoardUpdate_OutDTO().fromEntity(boardEntity);
     }
 }
