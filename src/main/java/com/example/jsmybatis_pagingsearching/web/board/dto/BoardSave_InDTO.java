@@ -26,7 +26,7 @@ public class BoardSave_InDTO {
                 .userId(userId)
                 .title(boardSaveInDTO.getTitle())
                 .content(boardSaveInDTO.getContent())
-                .views(1)
+                .views(0)
                 .build();
     }
 }

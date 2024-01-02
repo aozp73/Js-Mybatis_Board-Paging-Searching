@@ -3,7 +3,7 @@ create table user_tb(
 
     email varchar not null,
     username varchar(6) unique not null,
-    password varchar(20) not null,
+    password varchar not null,
     role varchar not null,
     created_at timestamp not null
 );

@@ -5,8 +5,8 @@
 
 <mapper namespace="com.example.jsmybatis_pagingsearching.domain.BoardMapper">
     <insert id="insert">
-        insert into board_tb(title, content, user_id, created_at) 
-        values(#{title}, #{content}, #{userId}, now())
+        insert into board_tb(title, content, user_id, views, created_at)
+        values(#{title}, #{content}, #{userId}, #{views}, now())
     </insert>
 
     <select id="findAll" resultType="Board">
