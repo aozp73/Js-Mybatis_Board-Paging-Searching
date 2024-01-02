@@ -22,7 +22,7 @@ public class Join_InDTO {
     private String password;
 
     @NotBlank(message = "아이디를 입력해주세요.")
-    @Size(min = 1, max = 6, message = "6글자 이내 입력해주세요.")
+    @Size(max = 6, message = "6글자 이내로 입력해주세요.")
     private String username;
 
     public User toEntity(BCryptPasswordEncoder passwordEncoder) {

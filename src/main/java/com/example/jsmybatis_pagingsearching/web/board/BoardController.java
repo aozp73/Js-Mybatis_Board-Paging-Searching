@@ -25,7 +25,7 @@ public class BoardController {
 
     @GetMapping("/board/list")
     public String list(Model model) {
-        log.debug("GET - 글 목록 페이지");
+        log.debug("GET - 게시글 목록 페이지");
         model.addAttribute("boardList", boardService.findAll());
 
         return "pages/board/list";
@@ -33,7 +33,7 @@ public class BoardController {
     
     @GetMapping("/board/detail/{boardId}")
     public String detail(@PathVariable Long boardId, Model model) {
-        log.debug("GET - 상세 페이지 요청");
+        log.debug("GET - 게시글 상세 페이지");
         boardService.viewsCount(boardId);
         model.addAttribute("boardList", boardService.findById(boardId));
 
@@ -42,13 +42,14 @@ public class BoardController {
 
     @GetMapping("/auth/board")
     public String saveForm(@ModelAttribute("boardSaveInDTO") BoardSave_InDTO boardSaveInDTO) {
-        log.debug("GET - 글 등록 페이지");
+        log.debug("GET - 게시글 등록 페이지");
         return "pages/board/saveForm";
     }
 
     @PostMapping("/auth/board")
-    public String save(@ModelAttribute("boardSaveInDTO") @Valid BoardSave_InDTO boardSaveInDTO, BindingResult bindingResult, @AuthenticationPrincipal MyUserDetails myUserDetails) {
-        log.debug("POST - 글 등록");
+    public String save(@ModelAttribute("boardSaveInDTO") @Valid BoardSave_InDTO boardSaveInDTO, BindingResult bindingResult,
+                       @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        log.debug("POST - 게시글 등록");
         if (bindingResult.hasErrors()){
             return "pages/board/saveForm";
         }

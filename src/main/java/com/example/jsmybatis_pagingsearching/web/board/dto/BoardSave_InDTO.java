@@ -14,11 +14,10 @@ import javax.validation.constraints.Size;
 public class BoardSave_InDTO {
 
     @NotBlank(message = "제목을 입력해주세요.")
-    @Size(min = 1, max = 30, message = "제목은 30자 이내로 작성해주세요.")
+    @Size(max = 30, message = "제목을 30자 이내로 작성해주세요.")
     private String title;
 
     @NotBlank(message = "내용을 입력해주세요.")
-    @Size(min = 1, message = "6글자 이상 입력해주세요.")
     private String content;
 
     public Board toEntity(BoardSave_InDTO boardSaveInDTO, Long userId) {

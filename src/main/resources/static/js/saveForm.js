@@ -1,22 +1,8 @@
-function post() {
-    let title = document.getElementById("title").value;
-    let content = document.getElementById("content").value;
-    let data = {
-        "title": title,
-        "content": content
-    };
-    console.log(data);
-    $.ajax({
-        url: '/auth/board',
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(data),
+function cancel() {
+    var confirmation = confirm("작성 중인 글이 모두 지워집니다.");
 
-        success: function(response) {
-            console.log(response);
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    })
+    if (confirmation) {
+        location.href = '/board/list';
+    } else {
+    }
 }
