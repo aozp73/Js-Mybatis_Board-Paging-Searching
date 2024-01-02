@@ -1,6 +1,8 @@
 package com.example.jsmybatis_pagingsearching.service;
 
 import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.CustomException;
+import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.Exception400;
+import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.Exception500;
 import com.example.jsmybatis_pagingsearching.domain.Board;
 import com.example.jsmybatis_pagingsearching.domain.BoardMapper;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -72,6 +75,26 @@ public class BoardService {
             boardRepository.insert(boardSaveInDTO.toEntity(boardSaveInDTO, userId));
         } catch (Exception exception) {
             throw new CustomException("게시글 저장에 실패하였습니다.");
+        }
+    }
+
+    @Transactional
+    public void delete(Long boardId, Long userId) {
+        Board boardEntity;
+        try {
+            boardEntity = boardRepository.findById(boardId);
+        } catch (Exception exception) {
+            throw new Exception400("게시글이 존재하지 않습니다.");
+        }
+
+        if (!Objects.equals(boardEntity.getUserId(), userId)) {
+            throw new Exception400("작성자만 삭제할 수 있습니다.");
+        }
+
+        try {
+            boardRepository.deleteById(boardId);
+        } catch (Exception exception) {
+            throw new Exception500("게시글 삭제에 실패하였습니다.");
         }
     }
 }

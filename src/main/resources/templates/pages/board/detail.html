@@ -28,7 +28,7 @@
             <div sec:authorize-expr="isAuthenticated()">
                 <div th:if="${#authentication.principal.user.id == boardList.userId}" class="d-flex justify-content-end mb-2">
                     <button class="btn btn-secondary btn-sm me-1">수정</button>
-                    <button class="btn btn-secondary btn-sm">삭제</button>
+                    <button class="btn btn-secondary btn-sm" th:data-boardId="${boardList.id}" th:onclick="deleteBoard(this.getAttribute('data-boardId'))">삭제</button>
                 </div>
             </div>
             <div class="ms-2 py-3" th:text="${boardList.content}">
@@ -71,4 +71,5 @@
     </div>
     </body>
 
+    <script th:src="@{/js/detail.js}"></script>
 </html>

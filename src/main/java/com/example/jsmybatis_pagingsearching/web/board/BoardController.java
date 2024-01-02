@@ -58,4 +58,11 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+    @DeleteMapping("/auth/board/{boardId}")
+    public ResponseEntity<?> save(@PathVariable Long boardId, @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        log.debug("DELETE - 게시글 삭제");
+        boardService.delete(boardId, myUserDetails.getUser().getId());
+
+        return ResponseEntity.ok().body(new ResponseDTO<>().data("ok"));
+    }
 }
