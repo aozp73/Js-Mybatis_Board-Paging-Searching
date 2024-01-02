@@ -20,7 +20,8 @@
                 <textarea th:field="*{content}" class="form-control" rows="13" placeholder="내용을 입력하세요" required></textarea>
             </div>
             <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-secondary me-2">수정</button>
+                <button type="submit" th:data-boardId="${board.id}" class="btn btn-secondary me-2"
+                        th:onclick="updateBoard(this.getAttribute('data-boardId'))">수정</button>
                 <button type="button" class="btn btn-secondary">취소</button>
             </div>
         </form>

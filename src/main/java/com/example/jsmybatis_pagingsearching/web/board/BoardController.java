@@ -4,6 +4,7 @@ import com.example.jsmybatis_pagingsearching.advice.exception.ResponseDTO;
 import com.example.jsmybatis_pagingsearching.config.security.principal.MyUserDetails;
 import com.example.jsmybatis_pagingsearching.service.BoardService;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardSave_InDTO;
+import com.example.jsmybatis_pagingsearching.web.board.dto.BoardUpdate_InDTO;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardUpdate_OutDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -64,7 +65,7 @@ public class BoardController {
         log.debug("DELETE - 게시글 삭제");
         boardService.delete(boardId, myUserDetails.getUser().getId());
 
-        return ResponseEntity.ok().body(new ResponseDTO<>().data("ok"));
+        return ResponseEntity.ok().body(new ResponseDTO<>());
     }
 
     @GetMapping("/auth/board/{boardId}")
@@ -73,5 +74,13 @@ public class BoardController {
         model.addAttribute("board", boardService.updateForm(boardId, myUserDetails.getUser().getId()));
 
         return "pages/board/updateForm";
+    }
+
+    @PutMapping("/auth/board")
+    public ResponseEntity<?> update(@RequestBody BoardUpdate_InDTO boardUpdateInDTO, @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        log.debug("PUT - 게시글 수정");
+        boardService.update(boardUpdateInDTO, myUserDetails.getUser().getId());
+
+        return ResponseEntity.ok().body(new ResponseDTO<>());
     }
 }

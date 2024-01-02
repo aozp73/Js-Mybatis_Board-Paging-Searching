@@ -5,10 +5,7 @@ import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.Excepti
 import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.Exception500;
 import com.example.jsmybatis_pagingsearching.domain.Board;
 import com.example.jsmybatis_pagingsearching.domain.BoardMapper;
-import com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO;
-import com.example.jsmybatis_pagingsearching.web.board.dto.BoardList_OutDTO;
-import com.example.jsmybatis_pagingsearching.web.board.dto.BoardSave_InDTO;
-import com.example.jsmybatis_pagingsearching.web.board.dto.BoardUpdate_OutDTO;
+import com.example.jsmybatis_pagingsearching.web.board.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -113,5 +110,24 @@ public class BoardService {
         }
 
         return new BoardUpdate_OutDTO().fromEntity(boardEntity);
+    }
+
+    public void update(BoardUpdate_InDTO boardUpdateInDTO, Long userId) {
+        Board boardEntity;
+        try {
+            boardEntity = boardRepository.findById(boardUpdateInDTO.getId());
+        } catch (Exception exception) {
+            throw new CustomException("게시글이 존재하지 않습니다.");
+        }
+
+        if (!Objects.equals(boardEntity.getUserId(), userId)) {
+            throw new CustomException("작성자만 수정할 수 있습니다.");
+        }
+
+        try {
+            boardRepository.updateById(boardUpdateInDTO.toEntity(boardEntity));
+        } catch (Exception exception) {
+            throw new CustomException("게시글이 수정에 실패하였습니다.");
+        }
     }
 }

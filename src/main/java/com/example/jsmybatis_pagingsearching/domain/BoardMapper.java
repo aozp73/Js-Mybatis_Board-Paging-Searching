@@ -12,6 +12,7 @@ public interface BoardMapper {
 
     public List<Board> findAll();
 
+    // 게시판 목록
     public List<BoardList_OutDTO> findAllWithUserForList();
 
     // 게시판 상세

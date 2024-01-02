@@ -9,12 +9,12 @@ function deleteBoard(boardId) {
             success: function(response) {
                 console.log(response)
                 alert("게시글을 삭제하였습니다.")
-                location.href = '/board/list';
+                location.href = '/board';
             },
             error: function(error) {
                 console.log(error);
                 alert(error.responseJSON.data);
-                location.href = '/board/list';
+                location.href = '/board';
             }
         });
     } else {
