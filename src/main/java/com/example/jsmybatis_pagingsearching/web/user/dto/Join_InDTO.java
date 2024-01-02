@@ -16,7 +16,7 @@ public class Join_InDTO {
     private String email; // 로그인
 
     @NotBlank(message = "패스워드를 입력해주세요.")
-    @Size(min = 6, message = "6글자 이상 입력해주세요.")
+    @Size(min = 6, max = 20, message = "6글자 이상 20자 이내로 입력해주세요.")
     private String passwordConfirmation;
     @NotBlank(message = "패스워드 확인을 입력해주세요.")
     private String password;

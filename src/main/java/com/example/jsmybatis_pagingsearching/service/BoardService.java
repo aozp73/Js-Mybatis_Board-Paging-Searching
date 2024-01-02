@@ -5,6 +5,7 @@ import com.example.jsmybatis_pagingsearching.domain.Board;
 import com.example.jsmybatis_pagingsearching.domain.BoardMapper;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardList_OutDTO;
+import com.example.jsmybatis_pagingsearching.web.board.dto.BoardSave_InDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class BoardService {
             boardEntity.setViews(boardEntity.getViews() + 1);
             boardRepository.updateById(boardEntity);
         } catch (Exception exception) {
-            throw new CustomException("게시물 조회에 실패하였습니다.");
+            throw new CustomException("게시글 조회에 실패하였습니다.");
         }
     }
 
@@ -63,5 +64,14 @@ public class BoardService {
         boardDetailDTO.setCommentDTO(boardDetailCommentDTO);
 
         return boardDetailDTO;
+    }
+
+    @Transactional
+    public void save(BoardSave_InDTO boardSaveInDTO, Long userId) {
+        try {
+            boardRepository.insert(boardSaveInDTO.toEntity(boardSaveInDTO, userId));
+        } catch (Exception exception) {
+            throw new CustomException("게시글 저장에 실패하였습니다.");
+        }
     }
 }

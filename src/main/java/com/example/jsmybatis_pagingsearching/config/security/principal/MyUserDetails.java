@@ -3,20 +3,19 @@ package com.example.jsmybatis_pagingsearching.config.security.principal;
 import com.example.jsmybatis_pagingsearching.domain.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Data
-public class MyPrincipalDetails implements UserDetails {
+public class MyUserDetails implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
     private User user;
 
-    public MyPrincipalDetails(User user) {
+    public MyUserDetails(User user) {
         this.user = user;
     }
 
