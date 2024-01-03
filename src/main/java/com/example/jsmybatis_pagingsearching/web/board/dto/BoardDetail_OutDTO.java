@@ -22,11 +22,10 @@ public class BoardDetail_OutDTO {
 
     // user_tb
     private String username;
-
     // commnet_tb
     private Integer commentCount;
-
     private List<CommentDTO> commentDTO;
+
     @Getter
     @Setter
     @ToString
@@ -37,6 +36,5 @@ public class BoardDetail_OutDTO {
         private String content;
         private Timestamp createdAt;
         private String createdAtFormat;
-
     }
 }

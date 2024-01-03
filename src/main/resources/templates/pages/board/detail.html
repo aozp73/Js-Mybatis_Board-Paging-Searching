@@ -26,8 +26,12 @@
             <hr/>
             <div sec:authorize-expr="isAuthenticated()">
                 <div th:if="${#authentication.principal.user.id == boardList.userId}" class="d-flex justify-content-end mb-2">
-                    <a class="btn btn-secondary btn-sm me-1" th:data-boardId="${boardList.id}" th:href="@{/auth/board/{boardId}(boardId=${boardList.id})}">수정</a>
-                    <button class="btn btn-secondary btn-sm" th:data-boardId="${boardList.id}" th:onclick="deleteBoard(this.getAttribute('data-boardId'))">삭제</button>
+                    <a class="btn btn-secondary btn-sm me-1" th:data-boardId="${boardList.id}"
+                       th:href="@{/auth/board/{boardId}(boardId=${boardList.id})}">수정
+                    </a>
+                    <button class="btn btn-secondary btn-sm" th:data-boardId="${boardList.id}"
+                            th:onclick="deleteBoard(this.getAttribute('data-boardId'))">삭제
+                    </button>
                 </div>
             </div>
             <div class="ms-2 py-3" th:text="${boardList.content}">
@@ -41,8 +45,8 @@
                     <li th:each="comment : ${boardList.commentDTO}" class="list-group-item">
                         <div class="mb-2 d-flex justify-content-between">
                             <div>
-                                <span class="me-3" th:text="${comment.username}">appfp001</span>
-                                <span class="custom-comment-font" th:text="${comment.createdAtFormat}">2023.12.27 13:45:22</span>
+                                <span class="me-3" th:text="${comment.username}"></span>
+                                <span class="custom-comment-font" th:text="${comment.createdAtFormat}"></span>
                             </div>
                             <div sec:authorize-expr="isAuthenticated()">
                                 <div th:if="${#authentication.principal.user.id == comment.userId}">
@@ -57,14 +61,17 @@
                     </li>
                 </ul>
             </div>
-            <form action="" method="post" class="ms-1">
-                <div class="mb-2">
-                    <textarea class="form-control" id="commentContent" name="commentContent" rows="3"></textarea>
-                </div>
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">댓글 작성</button>
-                </div>
-            </form>
+            <div sec:authorize-expr="isAuthenticated()">
+                <form class="ms-1">
+                    <div class="mb-2">
+                        <textarea class="form-control" id="commentContent" name="commentContent" rows="3"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary" th:data-boardId="${boardList.id}"
+                                th:onclick="postComment(this.getAttribute('data-boardId'))">댓글 작성</button>
+                    </div>
+                </form>
+            </div>
 
         </div>
     </div>

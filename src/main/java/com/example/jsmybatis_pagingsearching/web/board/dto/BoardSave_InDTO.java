@@ -20,11 +20,11 @@ public class BoardSave_InDTO {
     @NotBlank(message = "내용을 입력해주세요.")
     private String content;
 
-    public Board toEntity(BoardSave_InDTO boardSaveInDTO, Long userId) {
+    public Board toEntity(Long userId) {
         return Board.builder()
                 .userId(userId)
-                .title(boardSaveInDTO.getTitle())
-                .content(boardSaveInDTO.getContent())
+                .title(this.title)
+                .content(this.content)
                 .views(0)
                 .build();
     }

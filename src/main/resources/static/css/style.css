@@ -95,6 +95,12 @@
 .custom-comment-font {
   font-size: 13px;
   color: #949494;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.custom-comment-font:hover {
+  color: #5a5a5a;
 }
 
 .custom-title-alink {

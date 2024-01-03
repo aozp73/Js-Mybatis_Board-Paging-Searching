@@ -6,7 +6,7 @@
 <mapper namespace="com.example.jsmybatis_pagingsearching.domain.CommentMapper">
 
     <insert id="insert">
-        insert into user_tb(user_id, board_id, content, created_at)
+        insert into comment_tb(user_id, board_id, content, created_at)
         values(#{userId}, #{boardId}, #{content}, now())
     </insert>
 

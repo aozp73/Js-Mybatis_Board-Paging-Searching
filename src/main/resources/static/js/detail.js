@@ -20,3 +20,26 @@ function deleteBoard(boardId) {
     } else {
     }
 }
+
+function postComment(boardId) {
+    let content = document.getElementById("commentContent").value;
+    let data = {
+        content: content,
+        boardId: boardId
+    }
+
+    $.ajax({
+        url: '/auth/comment',
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data),
+
+        success: function(response) {
+            console.log(response)
+        },
+        error: function(error) {
+            console.log(error);
+            alert(error.responseJSON.data);
+        }
+    });
+}

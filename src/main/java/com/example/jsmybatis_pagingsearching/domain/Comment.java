@@ -1,12 +1,14 @@
 package com.example.jsmybatis_pagingsearching.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Timestamp;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Comment {
     private Long id;
     private Long userId;

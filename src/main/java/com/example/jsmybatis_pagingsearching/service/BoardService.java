@@ -70,7 +70,7 @@ public class BoardService {
     @Transactional
     public void save(BoardSave_InDTO boardSaveInDTO, Long userId) {
         try {
-            boardRepository.insert(boardSaveInDTO.toEntity(boardSaveInDTO, userId));
+            boardRepository.insert(boardSaveInDTO.toEntity(userId));
         } catch (Exception exception) {
             throw new CustomException("게시글 저장에 실패하였습니다.");
         }
