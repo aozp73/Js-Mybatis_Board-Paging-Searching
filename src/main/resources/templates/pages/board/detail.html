@@ -39,39 +39,42 @@
             <hr/>
             <div class="ms-1 mt-4 mb-5">
                 <div class="d-flex justify-content-end me-2 mb-2">
-                    <div style="font-size:13px" th:text="|댓글 ${boardList.commentCount}개|"></div>
+                    <div id="countComment" style="font-size:13px" th:text="|댓글 ${boardList.commentCount}개|"></div>
                 </div>
                 <ul class="list-group">
-                    <li th:each="comment : ${boardList.commentDTO}" class="list-group-item">
-                        <div class="mb-2 d-flex justify-content-between">
-                            <div>
-                                <span class="me-3" th:text="${comment.username}"></span>
-                                <span class="custom-comment-font" th:text="${comment.createdAtFormat}"></span>
-                            </div>
-                            <div sec:authorize-expr="isAuthenticated()">
-                                <div th:if="${#authentication.principal.user.id == comment.userId}">
-                                    <span class="custom-comment-font">수정</span>
-                                    <span class="custom-comment-font">삭제</span>
+                    <div id="commentSection">
+                        <li th:each="comment : ${boardList.commentDTO}" class="list-group-item">
+                            <div class="mb-2 d-flex justify-content-between">
+                                <div>
+                                    <span class="me-3" th:text="${comment.username}"></span>
+                                    <span class="custom-comment-font" th:text="${comment.createdAtFormat}"></span>
+                                </div>
+                                <div sec:authorize-expr="isAuthenticated()">
+                                    <div th:if="${#authentication.principal.user.id == comment.userId}">
+                                        <span class="custom-comment-font">수정</span>
+                                        <span class="custom-comment-font">삭제</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <div th:text="${comment.content}" style="font-size: 14px"></div>
-                        </div>
-                    </li>
+                            <div>
+                                <div th:text="${comment.content}" style="font-size: 14px"></div>
+                            </div>
+                        </li>
+                    </div>
                 </ul>
             </div>
-            <div sec:authorize-expr="isAuthenticated()">
-                <form class="ms-1">
-                    <div class="mb-2">
-                        <textarea class="form-control" id="commentContent" name="commentContent" rows="3"></textarea>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary" th:data-boardId="${boardList.id}"
-                                th:onclick="postComment(this.getAttribute('data-boardId'))">댓글 작성</button>
-                    </div>
-                </form>
-            </div>
+
+                <div sec:authorize-expr="isAuthenticated()">
+                    <form class="ms-1">
+                        <div class="mb-2">
+                            <textarea class="form-control" id="commentContent" name="commentContent" rows="3"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary" th:data-boardId="${boardList.id}"
+                                    th:onclick="postComment(this.getAttribute('data-boardId'))">댓글 작성</button>
+                        </div>
+                    </form>
+                </div>
 
         </div>
     </div>

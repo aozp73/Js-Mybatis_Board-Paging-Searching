@@ -8,9 +8,9 @@ import java.util.List;
 public interface CommentMapper {
     public Integer insert(Comment comment);
 
-    public List<Board> findAll();
+    public List<Comment> findAll();
 
-    public Board findById(Long id);
+    public Comment findById(Long id);
 
     public Integer updateById(Comment comment);
 

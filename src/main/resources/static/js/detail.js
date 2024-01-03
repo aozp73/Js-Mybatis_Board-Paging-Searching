@@ -36,10 +36,43 @@ function postComment(boardId) {
 
         success: function(response) {
             console.log(response)
+            appendComments(response.data);
+            $('#commentContent').val('');
         },
         error: function(error) {
             console.log(error);
             alert(error.responseJSON.data);
+            location.href = '/board/' + boardId;
         }
     });
+}
+
+function appendComments(commentList) {
+    let commentSection = $('#commentSection');
+    commentSection.empty();
+
+    commentList.forEach(function(comment) {
+
+        let newComment = $('<li class="list-group-item">' +
+            '<div class="mb-2 d-flex justify-content-between">' +
+            '<div>' +
+            '<span class="me-4">' + comment.username + '</span>' +
+            '<span class="custom-comment-font">' + comment.createdAtFormat + '</span>' +
+            '</div>' +
+            '<div sec:authorize-expr="isAuthenticated()">' +
+            '<div>' +
+            (comment.editable ? '<span class="custom-comment-font me-1">수정</span>' : '') +
+            (comment.editable ? '<span class="custom-comment-font">삭제</span>' : '') +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '<div>' +
+            '<div style="font-size: 14px">' + comment.content + '</div>' +
+            '</div>' +
+            '</li>');
+
+        commentSection.append(newComment);
+    });
+    let countComment = $('#countComment');
+    countComment.text('댓글 ' + commentList.length + '개');
 }

@@ -34,6 +34,7 @@ public class BoardDetail_OutDTO {
         private Long userId;
         private String username;
         private String content;
+        private Boolean editable;
         private Timestamp createdAt;
         private String createdAtFormat;
     }
