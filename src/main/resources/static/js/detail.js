@@ -75,12 +75,12 @@ function appendComments(commentList) {
     countComment.text('댓글 ' + commentList.length + '개');
 }
 
-function deleteComment(commentId) {
+function deleteComment(commentId, boardId) {
     let confirmation = confirm("댓글을 삭제하시겠습니까?");
 
     if (confirmation) {
         $.ajax({
-            url: '/auth/comment/' + commentId,
+            url: '/auth/comment/' + boardId + '/' + commentId,
             type: 'DELETE',
 
             success: function(response) {

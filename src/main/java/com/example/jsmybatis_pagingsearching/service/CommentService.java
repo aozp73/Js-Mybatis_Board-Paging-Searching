@@ -1,7 +1,9 @@
 package com.example.jsmybatis_pagingsearching.service;
 
+import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.Exception400;
 import com.example.jsmybatis_pagingsearching.advice.exception.statuscode.Exception500;
 import com.example.jsmybatis_pagingsearching.domain.BoardMapper;
+import com.example.jsmybatis_pagingsearching.domain.Comment;
 import com.example.jsmybatis_pagingsearching.domain.CommentMapper;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO;
 import com.example.jsmybatis_pagingsearching.web.comment.dto.CommentSave_InDTO;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -54,5 +57,25 @@ public class CommentService {
 
 
         return commentList;
+    }
+
+    @Transactional
+    public void delete(Long commentId, Long userId) {
+        Comment commentEntity;
+        try {
+            commentEntity = commentRepoistory.findById(commentId);
+        } catch (Exception exception) {
+            throw new Exception400("댓글이 존재하지 않습니다.");
+        }
+
+        if (!Objects.equals(commentEntity.getUserId(), userId)) {
+            throw new Exception400("작성자만 삭제할 수 있습니다.");
+        }
+
+        try {
+            commentRepoistory.deleteById(commentId);
+        } catch (Exception exception) {
+            throw new Exception500("댓글 삭제에 실패하였습니다.");
+        }
     }
 }

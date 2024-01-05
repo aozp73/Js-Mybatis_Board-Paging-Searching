@@ -52,8 +52,8 @@
                                 <div sec:authorize-expr="isAuthenticated()">
                                     <div th:if="${#authentication.principal.user.id == comment.userId}">
                                         <span class="custom-comment-font">수정</span>
-                                        <span class="custom-comment-font" th:data-commentId="${comment.id}"
-                                              th:onclick="deleteComment(this.getAttribute('data-commentId'))">삭제</span>
+                                        <span class="custom-comment-font" th:data-commentId="${comment.id}" th:data-boardId="${boardList.id}"
+                                              th:onclick="deleteComment(this.getAttribute('data-commentId'), this.getAttribute('data-boardId'))">삭제</span>
                                     </div>
                                 </div>
                             </div>
