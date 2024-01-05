@@ -29,9 +29,9 @@
                     <a class="btn btn-secondary btn-sm me-1" th:data-boardId="${boardList.id}"
                        th:href="@{/auth/board/{boardId}(boardId=${boardList.id})}">수정
                     </a>
-                    <button class="btn btn-secondary btn-sm" th:data-boardId="${boardList.id}"
+                    <a class="btn btn-secondary btn-sm" th:data-boardId="${boardList.id}"
                             th:onclick="deleteBoard(this.getAttribute('data-boardId'))">삭제
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="ms-2 py-3" th:text="${boardList.content}">
@@ -52,7 +52,8 @@
                                 <div sec:authorize-expr="isAuthenticated()">
                                     <div th:if="${#authentication.principal.user.id == comment.userId}">
                                         <span class="custom-comment-font">수정</span>
-                                        <span class="custom-comment-font">삭제</span>
+                                        <span class="custom-comment-font" th:data-commentId="${comment.id}"
+                                              th:onclick="deleteComment(this.getAttribute('data-commentId'))">삭제</span>
                                     </div>
                                 </div>
                             </div>

@@ -59,11 +59,9 @@ function appendComments(commentList) {
             '<span class="me-4">' + comment.username + '</span>' +
             '<span class="custom-comment-font">' + comment.createdAtFormat + '</span>' +
             '</div>' +
-            '<div sec:authorize-expr="isAuthenticated()">' +
             '<div>' +
             (comment.editable ? '<span class="custom-comment-font me-1">수정</span>' : '') +
             (comment.editable ? '<span class="custom-comment-font">삭제</span>' : '') +
-            '</div>' +
             '</div>' +
             '</div>' +
             '<div>' +
@@ -75,4 +73,25 @@ function appendComments(commentList) {
     });
     let countComment = $('#countComment');
     countComment.text('댓글 ' + commentList.length + '개');
+}
+
+function deleteComment(commentId) {
+    let confirmation = confirm("댓글을 삭제하시겠습니까?");
+
+    if (confirmation) {
+        $.ajax({
+            url: '/auth/comment/' + commentId,
+            type: 'DELETE',
+
+            success: function(response) {
+                console.log(response)
+                appendComments(response.data);
+            },
+            error: function(error) {
+                console.log(error);
+                alert(error.responseJSON.data);
+            }
+        });
+    } else {
+    }
 }

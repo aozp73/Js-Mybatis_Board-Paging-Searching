@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -30,5 +32,12 @@ public class CommentController {
         List<BoardDetail_OutDTO.CommentDTO> commentList = commentService.findAllForSave(commentSaveInDTO.getBoardId(), myUserDetails.getUser().getId());
 
         return ResponseEntity.ok().body(new ResponseDTO<>().data(commentList));
+    }
+
+    @DeleteMapping("/auth/comment/{boardId}")
+    public ResponseEntity<?> delete(@PathVariable Long boardId, @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        log.debug("POST - 댓글 작성 = {}", boardId);
+
+        return ResponseEntity.ok().body(new ResponseDTO<>().data(""));
     }
 }
