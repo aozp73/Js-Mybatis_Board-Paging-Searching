@@ -36,7 +36,7 @@ function postComment(boardId) {
 
         success: function(response) {
             console.log(response)
-            appendComments(response.data);
+            appendComments(response.data, boardId);
             $('#commentContent').val('');
         },
         error: function(error) {
@@ -47,32 +47,40 @@ function postComment(boardId) {
     });
 }
 
-function appendComments(commentList) {
+function appendComments(commentList, boardId) {
     let commentSection = $('#commentSection');
     commentSection.empty();
 
     commentList.forEach(function(comment) {
+        let commentItem = $('<li class="list-group-item"></li>');
+        let commentDiv = $('<div class="mb-2 d-flex justify-content-between"></div>');
 
-        let newComment = $('<li class="list-group-item">' +
-            '<div class="mb-2 d-flex justify-content-between">' +
-            '<div>' +
-            '<span class="me-4">' + comment.username + '</span>' +
-            '<span class="custom-comment-font">' + comment.createdAtFormat + '</span>' +
-            '</div>' +
-            '<div>' +
-            (comment.editable ? '<span class="custom-comment-font me-1">수정</span>' : '') +
-            (comment.editable ? '<span class="custom-comment-font">삭제</span>' : '') +
-            '</div>' +
-            '</div>' +
-            '<div>' +
-            '<div style="font-size: 14px">' + comment.content + '</div>' +
-            '</div>' +
-            '</li>');
+        // 사용자 이름, 생성 날짜
+        let userInfo = $('<div></div>')
+            .append($('<span class="me-4"></span>').text(comment.username))
+            .append($('<span class="custom-comment-font"></span>').text(comment.createdAtFormat));
 
-        commentSection.append(newComment);
+        // 수정, 삭제 버튼 (작성자만 랜더링)
+        let editDeleteDiv = $('<div></div>');
+        if (comment.editable) {
+            editDeleteDiv
+                .append($('<span class="custom-comment-font me-1">수정</span>'))
+                .append($('<span class="custom-comment-font">삭제</span>')
+                .click(function() {
+                    deleteComment(comment.id, boardId);
+                }));
+        }
+
+        // 댓글 내용
+        let commentContent = $('<div></div>')
+            .append($('<div style="font-size: 14px"></div>').text(comment.content));
+
+        commentDiv.append(userInfo).append(editDeleteDiv);
+        commentItem.append(commentDiv).append(commentContent);
+        commentSection.append(commentItem);
     });
-    let countComment = $('#countComment');
-    countComment.text('댓글 ' + commentList.length + '개');
+
+    $('#countComment').text('댓글 ' + commentList.length + '개');
 }
 
 function deleteComment(commentId, boardId) {
@@ -85,7 +93,7 @@ function deleteComment(commentId, boardId) {
 
             success: function(response) {
                 console.log(response)
-                appendComments(response.data);
+                appendComments(response.data, boardId);
             },
             error: function(error) {
                 console.log(error);
