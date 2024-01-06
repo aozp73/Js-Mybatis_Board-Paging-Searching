@@ -123,7 +123,10 @@ function updateFormat(commentId, boardId) {
     let commentContentBox = $('#commentContentBox-' + commentId);
     let commentContent = $('#commentContent-' + commentId);
 
-    let editButton = $('<span class="custom-comment-font me-2">수정하기</span>');
+    let editButton = $('<span class="custom-comment-font me-2">수정하기</span>')
+        .click(function() {
+            updateComment(commentId, boardId);
+        });
     let cancelButton = $('<span class="custom-comment-font">취소</span>')
         .click(function() {
             cancelEdit(commentId, boardId);
@@ -158,7 +161,6 @@ function cancelEdit(commentId, boardId) {
     commentUpdateButtonBox.empty().append(editButton).append(deleteButton);
 
     let currentContent = commentContent.val();
-    console.log(currentContent);
     let inputElement = $('<div>', {
         id: 'commentContent-' + commentId,
         type: 'text',
@@ -166,4 +168,30 @@ function cancelEdit(commentId, boardId) {
         text: currentContent
     });
     commentContentBox.empty().append(inputElement);
+}
+
+function updateComment(commentId, boardId) {
+    let content = $('#commentContent-'+ commentId).val();
+    let data = {
+        content: content,
+        boardId: boardId,
+        commentId: commentId
+    }
+
+    $.ajax({
+        url: '/auth/comment/' + boardId + '/' + commentId,
+        type: 'PUT',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data),
+
+        success: function(response) {
+            console.log(response)
+            appendComments(response.data, boardId);
+        },
+        error: function(error) {
+            console.log(error);
+            alert(error.responseJSON.data);
+            location.href = '/board/' + boardId;
+        }
+    });
 }

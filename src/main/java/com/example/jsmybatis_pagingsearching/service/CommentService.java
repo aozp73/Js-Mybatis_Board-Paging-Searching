@@ -7,6 +7,7 @@ import com.example.jsmybatis_pagingsearching.domain.Comment;
 import com.example.jsmybatis_pagingsearching.domain.CommentMapper;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO;
 import com.example.jsmybatis_pagingsearching.web.comment.dto.CommentSave_InDTO;
+import com.example.jsmybatis_pagingsearching.web.comment.dto.CommentUpdate_InDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,6 +77,28 @@ public class CommentService {
             commentRepoistory.deleteById(commentId);
         } catch (Exception exception) {
             throw new Exception500("댓글 삭제에 실패하였습니다.");
+        }
+    }
+
+    @Transactional
+    public void update(CommentUpdate_InDTO commentUpdateInDTO, Long userId) {
+        Comment commentEntity;
+        try {
+            commentEntity = commentRepoistory.findById(commentUpdateInDTO.getCommentId());
+        } catch (Exception exception) {
+            throw new Exception400("댓글이 존재하지 않습니다.");
+        }
+
+        if (!Objects.equals(commentEntity.getUserId(), userId)) {
+            throw new Exception400("작성자만 수정할 수 있습니다.");
+        }
+
+        commentEntity.setContent(commentUpdateInDTO.getContent());
+
+        try {
+            commentRepoistory.updateById(commentEntity);
+        } catch (Exception exception) {
+            throw new Exception500("댓글 수정에 실패하였습니다.");
         }
     }
 }

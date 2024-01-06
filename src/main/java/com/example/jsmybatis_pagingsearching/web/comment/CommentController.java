@@ -5,15 +5,13 @@ import com.example.jsmybatis_pagingsearching.config.security.principal.MyUserDet
 import com.example.jsmybatis_pagingsearching.service.CommentService;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO;
 import com.example.jsmybatis_pagingsearching.web.comment.dto.CommentSave_InDTO;
+import com.example.jsmybatis_pagingsearching.web.comment.dto.CommentUpdate_InDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -47,6 +45,19 @@ public class CommentController {
         // 전체 댓글 리 렌더링
         List<BoardDetail_OutDTO.CommentDTO> commentList
                 = commentService.findAllForSave(boardId, myUserDetails.getUser().getId());
+
+        return ResponseEntity.ok().body(new ResponseDTO<>().data(commentList));
+    }
+
+    @PutMapping("/auth/comment/{boardId}/{commentId}")
+    public ResponseEntity<?> update(@RequestBody CommentUpdate_InDTO commentUpdateInDTO,
+                                    @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        log.debug("PUT - 댓글 수정");
+        commentService.update(commentUpdateInDTO, myUserDetails.getUser().getId());
+
+        // 전체 댓글 리 렌더링
+        List<BoardDetail_OutDTO.CommentDTO> commentList
+                = commentService.findAllForSave(commentUpdateInDTO.getBoardId(), myUserDetails.getUser().getId());
 
         return ResponseEntity.ok().body(new ResponseDTO<>().data(commentList));
     }
