@@ -61,19 +61,33 @@ function appendComments(commentList, boardId) {
             .append($('<span class="custom-comment-font"></span>').text(comment.createdAtFormat));
 
         // 수정, 삭제 버튼 (작성자만 랜더링)
-        let editDeleteDiv = $('<div></div>');
+        let editDeleteDiv = $('<div>', {
+            id: 'commentUpdateButtonBox-'+ comment.id
+        });
+
         if (comment.editable) {
-            editDeleteDiv
-                .append($('<span class="custom-comment-font me-1">수정</span>'))
-                .append($('<span class="custom-comment-font">삭제</span>')
+            let editButton = $('<span class="custom-comment-font me-1">수정</span>')
+                .click(function() {
+                    updateFormat(comment.id, boardId);
+                });
+            let deleteButton = $('<span class="custom-comment-font">삭제</span>')
                 .click(function() {
                     deleteComment(comment.id, boardId);
-                }));
+                });
+
+            editDeleteDiv.empty().append(editButton).append(deleteButton);
         }
 
         // 댓글 내용
-        let commentContent = $('<div></div>')
-            .append($('<div style="font-size: 14px"></div>').text(comment.content));
+        let commentContent = $('<div>', {
+            id: 'commentContentBox-' + comment.id
+        }).append(
+            $('<div>', {
+                id: 'commentContent-' + comment.id,
+                style: 'font-size: 14px',
+                text: comment.content
+            })
+        );
 
         commentDiv.append(userInfo).append(editDeleteDiv);
         commentItem.append(commentDiv).append(commentContent);
@@ -102,4 +116,54 @@ function deleteComment(commentId, boardId) {
         });
     } else {
     }
+}
+
+function updateFormat(commentId, boardId) {
+    let commentUpdateButtonBox = $('#commentUpdateButtonBox-' + commentId);
+    let commentContentBox = $('#commentContentBox-' + commentId);
+    let commentContent = $('#commentContent-' + commentId);
+
+    let editButton = $('<span class="custom-comment-font me-2">수정하기</span>');
+    let cancelButton = $('<span class="custom-comment-font">취소</span>')
+        .click(function() {
+            cancelEdit(commentId, boardId);
+        });
+
+    commentUpdateButtonBox.empty().append(editButton).append(cancelButton);
+
+    let currentContent = commentContent.text();
+    let inputElement = $('<input>', {
+        id: 'commentContent-' + commentId,
+        type: 'text',
+        class: 'form-control form-control-sm',
+        value: currentContent
+    });
+
+    commentContentBox.empty().append(inputElement);
+}
+
+function cancelEdit(commentId, boardId) {
+    let commentUpdateButtonBox = $('#commentUpdateButtonBox-' + commentId);
+    let commentContentBox = $('#commentContentBox-' + commentId);
+    let commentContent = $('#commentContent-' + commentId);
+
+    let editButton = $('<span class="custom-comment-font me-1">수정</span>')
+        .click(function() {
+            updateFormat(commentId, boardId);
+        });
+    let deleteButton = $('<span class="custom-comment-font">삭제</span>')
+        .click(function() {
+            deleteComment(commentId, boardId);
+        });
+    commentUpdateButtonBox.empty().append(editButton).append(deleteButton);
+
+    let currentContent = commentContent.val();
+    console.log(currentContent);
+    let inputElement = $('<div>', {
+        id: 'commentContent-' + commentId,
+        type: 'text',
+        style: 'font-size: 14px',
+        text: currentContent
+    });
+    commentContentBox.empty().append(inputElement);
 }
