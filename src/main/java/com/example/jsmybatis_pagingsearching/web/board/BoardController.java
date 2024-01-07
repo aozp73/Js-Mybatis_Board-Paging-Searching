@@ -3,6 +3,7 @@ package com.example.jsmybatis_pagingsearching.web.board;
 import com.example.jsmybatis_pagingsearching.advice.exception.ResponseDTO;
 import com.example.jsmybatis_pagingsearching.config.security.principal.MyUserDetails;
 import com.example.jsmybatis_pagingsearching.service.BoardService;
+import com.example.jsmybatis_pagingsearching.web.board.dto.BoardListSearch_InDTO;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardSave_InDTO;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardUpdate_InDTO;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardUpdate_OutDTO;
@@ -26,8 +27,11 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/board")
-    public String list(Model model) {
-        log.debug("GET - 게시글 목록 페이지");
+    public String list(@ModelAttribute("searchInfo") BoardListSearch_InDTO boardListSearchInDTO, Model model) {
+        if (boardListSearchInDTO != null) {
+            log.debug("GET - 게시글 목록 페이지 = {}", boardListSearchInDTO.getSearchType());
+            log.debug("GET - 게시글 목록 페이지 = {}", boardListSearchInDTO.getSearchInput());
+        }
         model.addAttribute("boardList", boardService.findAll());
 
         return "pages/board/list";
