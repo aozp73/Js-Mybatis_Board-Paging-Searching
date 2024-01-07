@@ -15,7 +15,6 @@
     </select>
 
     <select id="findAllWithUserForList" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardList_OutDTO">
-    <![CDATA[
         SELECT bt.*,
                ut.username,
                FORMATDATETIME(bt.created_at, 'yyyy/MM/dd') AS createdAtFormat,
@@ -23,9 +22,22 @@
         FROM board_tb bt
         INNER JOIN user_tb ut ON bt.user_id = ut.id
         LEFT OUTER JOIN comment_tb ct ON bt.id = ct.board_id
+
+        <where>
+            <if test="searchType != null and searchKeyword != null and searchKeyword != ''">
+                <choose>
+                    <when test="searchType == 'title'">
+                        AND bt.title LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test="searchType == 'author'">
+                        AND ut.username LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                </choose>
+             </if>
+        </where>
+
         GROUP BY bt.id
         ORDER BY bt.created_at DESC;
-        ]]>
     </select>
 
     <select id="findAllWithUserForDetail" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO">

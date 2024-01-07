@@ -28,11 +28,8 @@ public class BoardController {
 
     @GetMapping("/board")
     public String list(@ModelAttribute("searchInfo") BoardListSearch_InDTO boardListSearchInDTO, Model model) {
-        if (boardListSearchInDTO != null) {
-            log.debug("GET - 게시글 목록 페이지 = {}", boardListSearchInDTO.getSearchType());
-            log.debug("GET - 게시글 목록 페이지 = {}", boardListSearchInDTO.getSearchInput());
-        }
-        model.addAttribute("boardList", boardService.findAll());
+        log.debug("GET - 게시글 목록 페이지");
+        model.addAttribute("boardList", boardService.findAll(boardListSearchInDTO));
 
         return "pages/board/list";
     }

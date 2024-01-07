@@ -3,6 +3,7 @@ package com.example.jsmybatis_pagingsearching.domain;
 import java.util.List;
 
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO;
+import com.example.jsmybatis_pagingsearching.web.board.dto.BoardListSearch_InDTO;
 import com.example.jsmybatis_pagingsearching.web.board.dto.BoardList_OutDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,7 +14,7 @@ public interface BoardMapper {
     public List<Board> findAll();
 
     // 게시판 목록
-    public List<BoardList_OutDTO> findAllWithUserForList();
+    public List<BoardList_OutDTO> findAllWithUserForList(BoardListSearch_InDTO boardListSearchInDTO);
 
     // 게시판 상세
     public BoardDetail_OutDTO findAllWithUserForDetail(Long boardId);

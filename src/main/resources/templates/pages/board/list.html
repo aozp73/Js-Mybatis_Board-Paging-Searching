@@ -79,11 +79,11 @@
                         <form th:action="@{/board}" th:object="${searchInfo}" method="get">
                             <div class="input-group">
                                 <select th:field="*{searchType}" class="form-select me-2">
-                                    <option value="content" selected>내용</option>
+                                    <option value="title" selected>제목</option>
                                     <option value="author">작성자</option>
                                 </select>
                                 <div class="me-2">
-                                    <input th:field="*{searchInput}" type="text" class="form-control"
+                                    <input th:field="*{searchKeyword}" type="text" class="form-control"
                                            style="width: 270px;" placeholder="검색어를 입력하세요">
                                 </div>
 

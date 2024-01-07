@@ -10,5 +10,5 @@ import lombok.*;
 public class BoardListSearch_InDTO {
 
     private String searchType;
-    private String searchInput;
+    private String searchKeyword;
 }

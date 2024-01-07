@@ -23,8 +23,8 @@ public class BoardService {
     private final BoardMapper boardRepository;
 
     @Transactional(readOnly = true)
-    public List<BoardList_OutDTO> findAll() {
-        return boardRepository.findAllWithUserForList();
+    public List<BoardList_OutDTO> findAll(BoardListSearch_InDTO boardListSearchInDTO) {
+        return boardRepository.findAllWithUserForList(boardListSearchInDTO);
     }
 
     @Transactional(readOnly = true)
@@ -112,6 +112,7 @@ public class BoardService {
         return new BoardUpdate_OutDTO().fromEntity(boardEntity);
     }
 
+    @Transactional
     public void update(BoardUpdate_InDTO boardUpdateInDTO, Long userId) {
         Board boardEntity;
         try {
