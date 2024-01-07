@@ -65,10 +65,12 @@
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                        <li th:each="pageNum : ${#numbers.sequence(pagingInfo.startPage, pagingInfo.endPage)}" class="page-item">
-                            <a th:href="@{/board(searchType=${searchInfo.searchType}, searchKeyword=${searchInfo.searchKeyword}, page=${pageNum})}" class="page-link" th:text="${pageNum}"></a>
-                        </li>
+
+                        <li th:each="pageNum : ${#numbers.sequence(pagingInfo.startPage, pagingInfo.endPage)}"
+                            th:classappend="${pageNum == searchInfo.page} ? 'active' : ''" class="page-item">
+                            <a class="page-link" th:text="${pageNum}"
+                               th:href="@{/board(searchType=${searchInfo.searchType}, searchKeyword=${searchInfo.searchKeyword}, page=${pageNum})}"></a>
+
                         <li class="page-item" th:classappend="${pagingInfo.getIsLast()}  ? 'disabled' : ''">
                             <a class="page-link" aria-label="Next"
                                th:href="@{/board(searchType=${searchInfo.searchType}, searchKeyword=${searchInfo.searchKeyword}, page=${searchInfo.page + 1})}">

@@ -113,6 +113,12 @@
 .custom-title-alink:hover {
   text-decoration: underline;
 }
+.page-item.active .page-link {
+  z-index: 1;
+  color: #555;
+  background-color: #f1f1f1;
+  border-color: #ccc;
+}
 
 /* 글 목록 페이지 */
 .custom-board-list-container {
