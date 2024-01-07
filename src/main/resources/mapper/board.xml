@@ -37,7 +37,8 @@
         </where>
 
         GROUP BY bt.id
-        ORDER BY bt.created_at DESC;
+        ORDER BY bt.created_at DESC
+        LIMIT #{pageSize} OFFSET #{offset};
     </select>
 
     <select id="findAllWithUserForDetail" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO">

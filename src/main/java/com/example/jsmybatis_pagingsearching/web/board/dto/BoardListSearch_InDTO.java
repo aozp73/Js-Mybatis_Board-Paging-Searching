@@ -11,5 +11,12 @@ public class BoardListSearch_InDTO {
 
     private String searchType;
     private String searchKeyword;
-    private Integer page;
+    private Integer page = 1;
+
+    private final Integer pageSize = 10;
+    private Integer offset;
+
+    public int getOffset() {
+        return (page - 1) * pageSize;
+    }
 }
