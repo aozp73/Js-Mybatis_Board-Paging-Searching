@@ -62,12 +62,12 @@ values(27, 2,'27번째 제목', '27번째 내용', 3, '2024-02-16 14:34:56');
 
 
 INSERT INTO comment_tb(id, user_id, board_id, content, created_at)
-values(1, 1, 1, '잘 부탁드려요!', now());
+values(1, 1, 27, '잘 부탁드려요!', now());
 INSERT INTO comment_tb(id, user_id, board_id, content, created_at)
-values(2, 2, 1, '반가워요!', now());
+values(2, 2, 27, '반가워요!', now());
 INSERT INTO comment_tb(id, user_id, board_id, content, created_at)
-values(3, 3, 1, '좋은 날씨네요!', now());
+values(3, 3, 27, '좋은 날씨네요!', now());
 INSERT INTO comment_tb(id, user_id, board_id, content, created_at)
-values(4, 1, 2, '안녕하세요 ~', now());
+values(4, 1, 26, '안녕하세요 ~', now());
 INSERT INTO comment_tb(id, user_id, board_id, content, created_at)
-values(5, 2, 2, '안녕하세요 ~', now());
+values(5, 2, 26, '안녕하세요 ~', now());
