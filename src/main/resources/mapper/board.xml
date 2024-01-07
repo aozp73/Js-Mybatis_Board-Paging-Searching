@@ -18,7 +18,8 @@
         SELECT bt.*,
                ut.username,
                FORMATDATETIME(bt.created_at, 'yyyy/MM/dd') AS createdAtFormat,
-               COUNT(ct.id) AS commentCount
+               COUNT(ct.id) AS commentCount,
+               COUNT(DISTINCT bt.id) As totalCount
         FROM board_tb bt
         INNER JOIN user_tb ut ON bt.user_id = ut.id
         LEFT OUTER JOIN comment_tb ct ON bt.id = ct.board_id

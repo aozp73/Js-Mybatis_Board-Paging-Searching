@@ -13,7 +13,7 @@ public class BoardListSearch_InDTO {
     private String searchKeyword;
     private Integer page = 1;
 
-    private final Integer pageSize = 10;
+    private final Integer pageSize = 5;
     private Integer offset;
 
     public int getOffset() {

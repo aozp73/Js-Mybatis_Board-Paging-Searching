@@ -3,10 +3,7 @@ package com.example.jsmybatis_pagingsearching.web.board;
 import com.example.jsmybatis_pagingsearching.advice.exception.ResponseDTO;
 import com.example.jsmybatis_pagingsearching.config.security.principal.MyUserDetails;
 import com.example.jsmybatis_pagingsearching.service.BoardService;
-import com.example.jsmybatis_pagingsearching.web.board.dto.BoardListSearch_InDTO;
-import com.example.jsmybatis_pagingsearching.web.board.dto.BoardSave_InDTO;
-import com.example.jsmybatis_pagingsearching.web.board.dto.BoardUpdate_InDTO;
-import com.example.jsmybatis_pagingsearching.web.board.dto.BoardUpdate_OutDTO;
+import com.example.jsmybatis_pagingsearching.web.board.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -29,7 +27,14 @@ public class BoardController {
     @GetMapping("/board")
     public String list(@ModelAttribute("searchInfo") BoardListSearch_InDTO boardListSearchInDTO, Model model) {
         log.debug("GET - 게시글 목록 페이지");
-        model.addAttribute("boardList", boardService.findAll(boardListSearchInDTO));
+        List<BoardList_OutDTO> boardListOutDTO = boardService.findAll(boardListSearchInDTO);
+
+        BoardListPageInfo_OutDTO boardListPageInfoOutDTO = new BoardListPageInfo_OutDTO();
+        boardListPageInfoOutDTO
+                .pageCalculate(boardListOutDTO.get(0).getTotalCount() , boardListSearchInDTO.getPage());
+
+        model.addAttribute("boardList", boardListOutDTO);
+        model.addAttribute("pagingInfo", boardListPageInfoOutDTO);
 
         return "pages/board/list";
     }

@@ -28,6 +28,16 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
+    public List<BoardList_OutDTO> pagingCalculate(BoardListSearch_InDTO boardListSearchInDTO, Integer totalCount) {
+        Integer currentPage = boardListSearchInDTO.getPage();
+        Integer endPage = 0;
+        Integer totalPage = 0;
+
+
+        return boardRepository.findAllWithUserForList(boardListSearchInDTO);
+    }
+
+    @Transactional(readOnly = true)
     public BoardDetail_OutDTO findById(Long boardId) {
         BoardDetail_OutDTO boardDetailDTO = boardRepository.findAllWithUserForDetail(boardId);
         List<BoardDetail_OutDTO.CommentDTO> boardDetailCommentDTO = boardRepository.findAllWithCommentForDetail(boardId);
