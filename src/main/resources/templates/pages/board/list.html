@@ -59,20 +59,22 @@
             <div>
                 <div class="d-flex justify-content-center">
                     <ul class="pagination">
-<!--                        <li class="page-item">-->
-<!--                            <a class="page-link" href="#" aria-label="Previous">-->
-<!--                                <span aria-hidden="true">&laquo;</span>-->
-<!--                            </a>-->
-<!--                        </li>-->
+                        <li class="page-item" th:classappend="${pagingInfo.getIsFirst()} ? 'disabled' : ''">
+                            <a class="page-link" aria-label="Previous"
+                               th:href="@{/board(searchType=${searchInfo.searchType}, searchKeyword=${searchInfo.searchKeyword}, page=${searchInfo.page - 1})}">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
                         <li class="page-item">
                         <li th:each="pageNum : ${#numbers.sequence(pagingInfo.startPage, pagingInfo.endPage)}" class="page-item">
                             <a th:href="@{/board(searchType=${searchInfo.searchType}, searchKeyword=${searchInfo.searchKeyword}, page=${pageNum})}" class="page-link" th:text="${pageNum}"></a>
                         </li>
-                        <li class="page-item">
-<!--                            <a class="page-link" href="#" aria-label="Next">-->
-<!--                                <span aria-hidden="true">&raquo;</span>-->
-<!--                            </a>-->
-<!--                        </li>-->
+                        <li class="page-item" th:classappend="${pagingInfo.getIsLast()}  ? 'disabled' : ''">
+                            <a class="page-link" aria-label="Next"
+                               th:href="@{/board(searchType=${searchInfo.searchType}, searchKeyword=${searchInfo.searchKeyword}, page=${searchInfo.page + 1})}">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="d-flex justify-content-center">

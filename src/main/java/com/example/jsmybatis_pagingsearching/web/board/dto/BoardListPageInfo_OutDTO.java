@@ -39,10 +39,8 @@ public class BoardListPageInfo_OutDTO {
         if (currentPage == 1) {
             this.isFirst = true;
         }
-
-        if (currentPage == totalPage - 1) {
+        if (currentPage.equals(totalPage)) {
             this.isLast = true;
         }
-
     }
 }
