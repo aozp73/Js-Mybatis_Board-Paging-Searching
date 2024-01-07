@@ -15,6 +15,8 @@ public interface BoardMapper {
 
     // 게시판 목록
     public List<BoardList_OutDTO> findAllWithUserForList(BoardListSearch_InDTO boardListSearchInDTO);
+    // 페이징 정보
+    public Integer findTotalCountWithUserForList(BoardListSearch_InDTO boardListSearchInDTO);
 
     // 게시판 상세
     public BoardDetail_OutDTO findAllWithUserForDetail(Long boardId);

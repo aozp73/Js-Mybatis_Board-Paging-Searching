@@ -18,8 +18,7 @@
         SELECT bt.*,
                ut.username,
                FORMATDATETIME(bt.created_at, 'yyyy/MM/dd') AS createdAtFormat,
-               COUNT(ct.id) AS commentCount,
-               COUNT(DISTINCT bt.id) As totalCount
+               COUNT(ct.id) AS commentCount
         FROM board_tb bt
         INNER JOIN user_tb ut ON bt.user_id = ut.id
         LEFT OUTER JOIN comment_tb ct ON bt.id = ct.board_id
@@ -40,6 +39,26 @@
         GROUP BY bt.id
         ORDER BY bt.created_at DESC
         LIMIT #{pageSize} OFFSET #{offset};
+    </select>
+
+    <select id="findTotalCountWithUserForList" resultType="int">
+        SELECT COUNT(DISTINCT bt.id)
+        FROM board_tb bt
+        INNER JOIN user_tb ut ON bt.user_id = ut.id
+        LEFT OUTER JOIN comment_tb ct ON bt.id = ct.board_id
+
+        <where>
+            <if test="searchType != null and searchKeyword != null and searchKeyword != ''">
+                <choose>
+                    <when test="searchType == 'title'">
+                        AND bt.title LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test="searchType == 'author'">
+                        AND ut.username LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                </choose>
+            </if>
+        </where>
     </select>
 
     <select id="findAllWithUserForDetail" resultType="com.example.jsmybatis_pagingsearching.web.board.dto.BoardDetail_OutDTO">

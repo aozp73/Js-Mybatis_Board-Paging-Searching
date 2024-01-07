@@ -17,8 +17,6 @@ public class BoardList_OutDTO {
     private Integer views;
     private String createdAtFormat;
 
-    private Integer totalCount;
-
     // user_tb
     private String username;
 

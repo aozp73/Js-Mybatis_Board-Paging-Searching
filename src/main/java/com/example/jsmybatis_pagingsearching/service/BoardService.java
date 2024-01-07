@@ -28,13 +28,14 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public List<BoardList_OutDTO> pagingCalculate(BoardListSearch_InDTO boardListSearchInDTO, Integer totalCount) {
-        Integer currentPage = boardListSearchInDTO.getPage();
-        Integer endPage = 0;
-        Integer totalPage = 0;
+    public BoardListPageInfo_OutDTO pagingCalculate(BoardListSearch_InDTO boardListSearchInDTO) {
+        Integer totalCount = boardRepository.findTotalCountWithUserForList(boardListSearchInDTO);
 
+        BoardListPageInfo_OutDTO boardListPageInfoOutDTO = new BoardListPageInfo_OutDTO();
+        boardListPageInfoOutDTO
+                .pageCalculate(totalCount , boardListSearchInDTO.getPage());
 
-        return boardRepository.findAllWithUserForList(boardListSearchInDTO);
+        return boardListPageInfoOutDTO;
     }
 
     @Transactional(readOnly = true)

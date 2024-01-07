@@ -65,15 +65,10 @@
 <!--                            </a>-->
 <!--                        </li>-->
                         <li class="page-item">
-<!--                        <li th:each="pageNum : ${#numbers.sequence(1, totalPages)}" class="page-item">-->
-                            <li>
-                                <a th:href="@{/board(searchType=${searchInfo.searchType}, searchKeyword=${searchInfo.searchKeyword}, page=${1})}" class="page-link" th:text="${1}"></a>
-                            </li>
-                            <li>
-                                <a th:href="@{/board(searchType=${searchInfo.searchType}, searchKeyword=${searchInfo.searchKeyword}, page=${2})}" class="page-link" th:text="${2}"></a>
-                            </li>
+                        <li th:each="pageNum : ${#numbers.sequence(pagingInfo.startPage, pagingInfo.endPage)}" class="page-item">
+                            <a th:href="@{/board(searchType=${searchInfo.searchType}, searchKeyword=${searchInfo.searchKeyword}, page=${pageNum})}" class="page-link" th:text="${pageNum}"></a>
                         </li>
-<!--                        <li class="page-item">-->
+                        <li class="page-item">
 <!--                            <a class="page-link" href="#" aria-label="Next">-->
 <!--                                <span aria-hidden="true">&raquo;</span>-->
 <!--                            </a>-->

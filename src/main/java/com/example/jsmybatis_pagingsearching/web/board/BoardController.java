@@ -27,14 +27,9 @@ public class BoardController {
     @GetMapping("/board")
     public String list(@ModelAttribute("searchInfo") BoardListSearch_InDTO boardListSearchInDTO, Model model) {
         log.debug("GET - 게시글 목록 페이지");
-        List<BoardList_OutDTO> boardListOutDTO = boardService.findAll(boardListSearchInDTO);
 
-        BoardListPageInfo_OutDTO boardListPageInfoOutDTO = new BoardListPageInfo_OutDTO();
-        boardListPageInfoOutDTO
-                .pageCalculate(boardListOutDTO.get(0).getTotalCount() , boardListSearchInDTO.getPage());
-
-        model.addAttribute("boardList", boardListOutDTO);
-        model.addAttribute("pagingInfo", boardListPageInfoOutDTO);
+        model.addAttribute("boardList", boardService.findAll(boardListSearchInDTO));
+        model.addAttribute("pagingInfo", boardService.pagingCalculate(boardListSearchInDTO));
 
         return "pages/board/list";
     }
