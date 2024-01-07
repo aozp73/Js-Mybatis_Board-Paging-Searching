@@ -11,4 +11,5 @@ public class BoardListSearch_InDTO {
 
     private String searchType;
     private String searchKeyword;
+    private Integer page;
 }
