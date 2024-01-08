@@ -56,9 +56,9 @@ public class BoardController {
         if (bindingResult.hasErrors()){
             return "pages/board/saveForm";
         }
-        boardService.save(boardSaveInDTO, myUserDetails.getUser().getId());
+        Long boardId = boardService.save(boardSaveInDTO, myUserDetails.getUser().getId());
 
-        return "redirect:/board/list";
+        return "redirect:/board/" + boardId;
     }
 
     @DeleteMapping("/auth/board/{boardId}")

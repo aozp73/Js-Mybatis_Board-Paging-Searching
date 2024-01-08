@@ -79,12 +79,17 @@ public class BoardService {
     }
 
     @Transactional
-    public void save(BoardSave_InDTO boardSaveInDTO, Long userId) {
+    public Long save(BoardSave_InDTO boardSaveInDTO, Long userId) {
+
+        Board board = boardSaveInDTO.toEntity(userId);
+
         try {
-            boardRepository.insert(boardSaveInDTO.toEntity(userId));
+            boardRepository.insert(board);
         } catch (Exception exception) {
             throw new CustomException("게시글 저장에 실패하였습니다.");
         }
+
+        return board.getId();
     }
 
     @Transactional

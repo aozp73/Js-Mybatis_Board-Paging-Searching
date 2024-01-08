@@ -5,7 +5,7 @@
 
 <mapper namespace="com.example.jsmybatis_pagingsearching.domain.BoardMapper">
 
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into board_tb(title, content, user_id, views, created_at)
         values(#{title}, #{content}, #{userId}, #{views}, now())
     </insert>
